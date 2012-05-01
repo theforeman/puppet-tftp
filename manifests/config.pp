@@ -5,6 +5,13 @@ class tftp::config {
     require => [Class['tftp::install'], Class['xinetd::install']],
     notify  => Class['xinetd::service']
   }
+  file {'/etc/tftpd.map':
+    content => template('tftp/tftpd.map'),
+    mode    => '0644',
+    require => [Class['tftp::install'], Class['xinetd::install']],
+    notify  => Class['xinetd::service']
+  }
+
 
   file { $tftp::params::root:
     ensure => directory,
