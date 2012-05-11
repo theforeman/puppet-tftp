@@ -4,7 +4,7 @@ class tftp::install {
       $tftp_package = 'tftp-server'
     }
     Debian: {
-      $tftp_package = 'atftpd'
+      $tftp_package = 'tftpd-hpa'
     }
     default: {
       fail("${::hostname}: This module does not support operatingsystem ${::operatingsystem}")
