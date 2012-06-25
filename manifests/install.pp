@@ -3,7 +3,7 @@ class tftp::install {
     redhat,centos,fedora,Scientific: {
       $tftp_package = 'tftp-server'
     }
-    Debian: {
+    Debian,Ubuntu: {
       $tftp_package = 'tftpd-hpa'
     }
     default: {
