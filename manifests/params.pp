@@ -1,7 +1,7 @@
 class tftp::params {
   case $::operatingsystem {
     Debian: {
-      $root    = "/srv/tftp"
+      $root    = '/srv/tftp'
       $daemon  = true
       $service = 'tftpd-hpa'
     }
