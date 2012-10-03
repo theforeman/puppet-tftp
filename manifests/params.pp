@@ -6,7 +6,7 @@ class tftp::params {
       $service = 'tftpd-hpa'
     }
     Ubuntu: {
-      $root    = "/var/lib/tftpboot/"
+      $root    = '/var/lib/tftpboot/'
       $daemon  = true
       $service = 'tftpd-hpa'
     }
