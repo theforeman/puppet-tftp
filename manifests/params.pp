@@ -10,9 +10,13 @@ class tftp::params {
       $daemon  = true
       $service = 'tftpd-hpa'
     }
-    default: {
-      $root   = '/tftpboot'
-      $daemon = false
+    RedHat, CentOS, Fedora, Scientific: {
+      if $::operatingsystemrelease =~ /^(4|5)/ {
+        $root  = '/tftpboot/'
+      } else {
+        $root  = '/var/lib/tftpboot/'
+      }
+      $daemon  = false
     }
   }
 }
