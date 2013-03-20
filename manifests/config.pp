@@ -4,23 +4,28 @@ class tftp::config {
     default: { } # not needed for daemon-mode
     false: {
       include xinetd
-      file {'/etc/xinetd.d/tftp':
-        content => template('tftp/xinetd-tftp'),
-        mode    => '0644',
-        require => Class['tftp::install', 'xinetd::install'],
-        notify  => Class['xinetd::service']
-      }
+
+       xinetd::service { 'tftp':
+         port        => '69',
+         server      => '/usr/sbin/in.tftpd',
+         server_args => "-v -s ${tftp::params::root} -m /etc/tftpd.map",
+         socket_type => 'dgram',
+         protocol    => 'udp',
+         cps         => '100 2',
+         flags       => 'IPv4',
+         per_source  => '11',
+       }
 
       file {'/etc/tftpd.map':
         content => template('tftp/tftpd.map'),
         mode    => '0644',
-        require => Class['tftp::install', 'xinetd::install'],
-        notify  => Class['xinetd::service']
+        require => Class['tftp::install'],
+        notify  => Class['xinetd']
       }
 
       file { $tftp::params::root:
         ensure => directory,
-        notify => Class['xinetd::service'],
+        notify => Class['xinetd'],
       }
     }
   }
