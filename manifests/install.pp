@@ -1,13 +1,13 @@
 class tftp::install {
-  case $::operatingsystem {
-    redhat,centos,fedora,Scientific: {
+  case $::osfamily {
+    RedHat: {
       $tftp_package = 'tftp-server'
     }
-    Debian,Ubuntu: {
+    Debian: {
       $tftp_package = 'tftpd-hpa'
     }
     default: {
-      fail("${::hostname}: This module does not support operatingsystem ${::operatingsystem}")
+      fail("${::hostname}: This module does not support operatingsystem ${::osfamily}")
     }
   }
 
