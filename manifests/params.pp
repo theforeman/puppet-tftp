@@ -1,16 +1,20 @@
 class tftp::params {
-  case $::operatingsystem {
+  case $::osfamily {
     Debian: {
-      $root    = '/srv/tftp'
-      $daemon  = true
-      $service = 'tftpd-hpa'
+      case $::operatingsystem {
+        Debian: {
+          $root    = '/srv/tftp'
+          $daemon  = true
+          $service = 'tftpd-hpa'
+        }
+        Ubuntu: {
+          $root    = '/var/lib/tftpboot/'
+          $daemon  = true
+          $service = 'tftpd-hpa'
+        }
+      }
     }
-    Ubuntu: {
-      $root    = '/var/lib/tftpboot/'
-      $daemon  = true
-      $service = 'tftpd-hpa'
-    }
-    RedHat, CentOS, Fedora, Scientific: {
+    RedHat: {
       if $::operatingsystemrelease =~ /^(4|5)/ {
         $root  = '/tftpboot/'
       } else {
@@ -18,5 +22,7 @@ class tftp::params {
       }
       $daemon  = false
     }
+    default: {
+      fail("${::hostname}: This module does not support operatingsystem ${::osfamily}") }
   }
 }
