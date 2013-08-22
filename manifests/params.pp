@@ -14,7 +14,7 @@ class tftp::params {
         }
       }
     }
-    RedHat: {
+    RedHat, Linux: {
       if $::operatingsystemrelease =~ /^(4|5)/ {
         $root  = '/tftpboot/'
       } else {

@@ -1,6 +1,6 @@
 class tftp::install {
   case $::osfamily {
-    RedHat: {
+    RedHat, Linux: {
       $tftp_package = 'tftp-server'
     }
     Debian: {
