@@ -39,11 +39,7 @@ describe 'tftp' do
 
       should contain_file('/etc/tftpd.map').
         with_content(%r{^# Convert backslashes to slashes}).
-        with({
-        :mode    => '0644',
-        :require => 'Class[Tftp::Install]',
-        :notify  => 'Class[Xinetd]',
-      })
+        with_mode('0644')
 
       should contain_file('/var/lib/tftpboot/').with({
         :ensure => 'directory',
@@ -99,7 +95,7 @@ describe 'tftp' do
     end
 
     it 'should fail' do
-      expect { subject }.to raise_error(Puppet::Error, /: This module does not support operatingsystem #{facts[:osfamily]}/)
+      expect { subject }.to raise_error(Puppet::Error, /: This module does not support osfamily #{facts[:osfamily]}/)
     end
   end
 end
