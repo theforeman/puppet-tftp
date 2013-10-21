@@ -19,6 +19,18 @@ class tftp::params {
         $root  = '/var/lib/tftpboot/'
       }
     }
+    Linux: {
+      case $::operatingsystem {
+        Amazon: {
+          $package = 'tftp-server'
+          $daemon  = false
+          $root    = '/var/lib/tftpboot/'
+        }
+        default: {
+          fail("${::hostname}: This module does not support operatingsystem ${::operatingsystem}")
+        }
+      }
+    }
     default: {
       fail("${::hostname}: This module does not support osfamily ${::osfamily}")
     }
