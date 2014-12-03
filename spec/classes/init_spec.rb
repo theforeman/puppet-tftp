@@ -183,7 +183,7 @@ describe 'tftp' do
     end
 
     it 'should fail' do
-      expect { subject }.to raise_error(Puppet::Error, /: This module does not support operatingsystem #{facts[:operatingsystem]}/)
+      should raise_error(Puppet::Error, /: This module does not support operatingsystem #{facts[:operatingsystem]}/)
     end
   end
 
@@ -193,7 +193,7 @@ describe 'tftp' do
     end
 
     it 'should fail' do
-      expect { subject }.to raise_error(Puppet::Error, /: This module does not support osfamily #{facts[:osfamily]}/)
+      should raise_error(Puppet::Error, /: This module does not support osfamily #{facts[:osfamily]}/)
     end
   end
 end
