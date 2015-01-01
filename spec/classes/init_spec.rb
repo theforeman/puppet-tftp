@@ -91,6 +91,21 @@ describe 'tftp' do
     end
   end
 
+  context 'on Debian/jessie' do
+    let :facts do
+      {
+        :osfamily              => 'Debian',
+        :operatingsystem       => 'Debian',
+        :operatingsystemrelease => '8.0'
+      }
+    end
+
+    it 'should install Debian/jessie specific packages' do
+      should contain_package('pxelinux').with_ensure('installed')
+      should contain_package('syslinux-common').with_ensure('installed')
+    end
+  end
+
   context 'on Amazon Linux' do
     let :facts do
       {
