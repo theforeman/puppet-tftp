@@ -157,6 +157,23 @@ describe 'tftp' do
     end
   end
 
+  context 'on RedHat with root set to /tftpboot' do
+    let :facts do {
+      :osfamily               => 'Redhat',
+      :operatingsystemrelease => '6.4',
+    } end
+
+    let :params do {
+      :root => '/tftpboot',
+    } end
+
+    it 'should set root to non-default value in xinetd config' do
+      should contain_xinetd__service('tftp').with({
+        :server_args => '-v -s /tftpboot -m /etc/tftpd.map',
+      })
+    end
+  end
+
   context 'on unsupported Linux operatingsystem' do
     let :facts do
       {
