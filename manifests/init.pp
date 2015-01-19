@@ -21,6 +21,9 @@
 class tftp (
   $root = $tftp::params::root,
 ) inherits tftp::params {
+
+  validate_absolute_path($root)
+
   class {'tftp::install':} ->
   class {'tftp::config':} ~>
   class {'tftp::service':} ->
