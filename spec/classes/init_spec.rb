@@ -19,6 +19,8 @@ describe 'tftp' do
                          'tftp-server'
                        when 'Debian'
                          'tftpd-hpa'
+                       when 'FreeBSD'
+                           'tftp-hpa'
                        end
 
         should contain_package(tftp_package).with({
@@ -62,6 +64,21 @@ describe 'tftp' do
         it 'should not contain the service' do
           should_not contain_service('tftpd-hpa')
         end
+      elsif facts[:osfamily] == 'FreeBSD'
+        it 'should not configure xinetd' do
+          should_not contain_class('xinetd')
+          should_not contain_xinetd__service('tftp')
+        end
+
+        it 'should contain the service' do
+          should contain_service('tftpd').with({
+            :ensure    => 'running',
+            :enable    => true,
+            :alias     => 'tftpd',
+            :subscribe => 'Class[Tftp::Config]',
+          })
+        end
+
       else
         it 'should not configure xinetd' do
           should_not contain_class('xinetd')

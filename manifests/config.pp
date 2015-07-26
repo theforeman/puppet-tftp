@@ -2,7 +2,18 @@
 class tftp::config {
 
   case $::tftp::params::daemon {
-    default: { } # not needed for daemon-mode
+    default: {
+      file { $::tftp::root:
+        ensure => directory,
+      }
+
+      if $::osfamily =~ /^(FreeBSD|DragonFly)$/ {
+        augeas { 'set root directory':
+          context => '/files/etc/rc.conf',
+          changes => "set tftpd_flags '\"-s ${::tftp::root}\"'",
+        }
+      }
+    }
     false: {
       include ::xinetd
 

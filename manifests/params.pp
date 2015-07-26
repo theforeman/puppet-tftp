@@ -39,6 +39,14 @@ class tftp::params {
         }
       }
     }
+    /^(FreeBSD|DragonFly)$/: {
+      $package = 'tftp-hpa'
+      $daemon  = true
+      $service = 'tftpd'
+      $root = '/tftpboot'
+      $syslinux_package = 'syslinux'
+    }
+
     default: {
       fail("${::hostname}: This module does not support osfamily ${::osfamily}")
     }
