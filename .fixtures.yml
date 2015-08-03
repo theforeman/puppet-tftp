@@ -1,6 +1,8 @@
 fixtures:
   repositories:
-    stdlib: 'git://github.com/puppetlabs/puppetlabs-stdlib'
+    stdlib:
+      repo: 'git://github.com/puppetlabs/puppetlabs-stdlib'
+      branch: '4.7.x'
     xinetd: 'git://github.com/puppetlabs/puppetlabs-xinetd'
 
   symlinks:
