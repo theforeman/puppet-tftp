@@ -43,7 +43,7 @@ describe 'tftp' do
           should contain_xinetd__service('tftp').with({
             :port        => '69',
             :server      => '/usr/sbin/in.tftpd',
-            :server_args => '-v -s /var/lib/tftpboot/ -m /etc/tftpd.map',
+            :server_args => '-v -s /var/lib/tftpboot -m /etc/tftpd.map',
             :socket_type => 'dgram',
             :protocol    => 'udp',
             :cps         => '100 2',
@@ -141,7 +141,7 @@ describe 'tftp' do
       should contain_xinetd__service('tftp').with({
         :port        => '69',
         :server      => '/usr/sbin/in.tftpd',
-        :server_args => '-v -s /var/lib/tftpboot/ -m /etc/tftpd.map',
+        :server_args => '-v -s /var/lib/tftpboot -m /etc/tftpd.map',
         :socket_type => 'dgram',
         :protocol    => 'udp',
         :cps         => '100 2',

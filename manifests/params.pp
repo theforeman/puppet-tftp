@@ -6,7 +6,7 @@ class tftp::params {
       $daemon  = true
       $service = 'tftpd-hpa'
       if $::operatingsystem == 'Ubuntu' {
-        $root = '/var/lib/tftpboot/'
+        $root = '/var/lib/tftpboot'
       } else {
         $root = '/srv/tftp'
       }
@@ -21,9 +21,9 @@ class tftp::params {
       $daemon           = false
       $syslinux_package = 'syslinux'
       if $::operatingsystemrelease =~ /^(4|5)/ {
-        $root  = '/tftpboot/'
+        $root  = '/tftpboot'
       } else {
-        $root  = '/var/lib/tftpboot/'
+        $root  = '/var/lib/tftpboot'
       }
     }
     'Linux': {
@@ -31,7 +31,7 @@ class tftp::params {
         'Amazon': {
           $package          = 'tftp-server'
           $daemon           = false
-          $root             = '/var/lib/tftpboot/'
+          $root             = '/var/lib/tftpboot'
           $syslinux_package = 'syslinux'
         }
         default: {
