@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.0
+* Add FreeBSD support
+* Support Puppet 4 and future parser
+* Remove trailing slashes of tftproot directories
+
 ## 1.5.1
 * Improved linting, minor style fixes
 
