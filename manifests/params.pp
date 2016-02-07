@@ -10,7 +10,8 @@ class tftp::params {
       } else {
         $root = '/srv/tftp'
       }
-      if $::operatingsystemrelease =~ /^8/ {
+      if  ($::operatingsystem == 'Ubuntu' and versioncmp($::operatingsystemrelease, '14.10') >= 0) or
+          ($::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '8') >= 0) {
         $syslinux_package = [ 'syslinux-common', 'pxelinux' ]
       } else {
         $syslinux_package = 'syslinux'
