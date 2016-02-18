@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.0
+* Add support for Ubuntu 16.04
+* Support Puppet 3.0 minimum
+* Support Fedora 21, remove Debian 6 (Squeeze)
+
 ## 1.6.0
 * Add FreeBSD support
 * Support Puppet 4 and future parser
