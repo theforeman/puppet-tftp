@@ -86,6 +86,9 @@
         "3.8",
         "4"
       ]
+    },
+    {
+      "operatingsystem": "Archlinux"
     }
   ]
 }

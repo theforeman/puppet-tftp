@@ -47,6 +47,13 @@ class tftp::params {
       $root = '/tftpboot'
       $syslinux_package = 'syslinux'
     }
+    'Archlinux': {
+      $package          = 'tftp-hpa'
+      $daemon           = true
+      $service          = 'tftpd.socket' #systemd starts the socket not the service
+      $syslinux_package = 'syslinux'
+      $root             = '/srv/tftp'
+    }
 
     default: {
       fail("${::hostname}: This module does not support osfamily ${::osfamily}")
