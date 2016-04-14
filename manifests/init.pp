@@ -5,6 +5,8 @@
 # === Parameters
 #
 # $root:: Configures the root directory for the TFTP server
+# $package:: name of the tftp package
+# $syslinux_package:: name of the syslinux package, essential for pxe boot
 #
 # === Usage
 #
@@ -18,8 +20,14 @@
 #    root => '/tftpboot',
 #  }
 #
+# * Configure a TFTP server with non-default package name:
+#  class { 'tftp:'
+#    package => 'tftp-hpa-destruct',
+#  }
 class tftp (
-  $root = $tftp::params::root,
+  $root             = $tftp::params::root,
+  $package          = $tftp::params::package,
+  $syslinux_package = $tftp::params::syslinux_package,
 ) inherits tftp::params {
 
   validate_absolute_path($root)

@@ -13,7 +13,7 @@ describe 'tftp' do
         should contain_class('tftp::service')
       end
 
-      it 'should install packages' do
+      it 'should install default package' do
         tftp_package = case facts[:osfamily]
                        when 'RedHat'
                          'tftp-server'
@@ -123,6 +123,28 @@ describe 'tftp' do
           end
         else
           # not supported
+        end
+      end
+
+      context 'with custom tftp package set to tftp-hpa-destruct' do
+        let :params do {
+          :package => 'tftp-hpa-destruct',
+        } end
+
+        it 'should install custom tftp package' do
+          should contain_package('tftp-hpa-destruct').with({
+            :ensure => 'installed',
+            :alias  => 'tftp-server',
+          })
+        end
+      end
+
+      context 'with custom syslinux package set to my-own-syslinux' do
+        let :params do {
+          :syslinux_package => 'my-own-syslinux',
+        } end
+        it 'should install custom syslinux package' do
+          should contain_package('my-own-syslinux').with({:ensure => 'installed',})
         end
       end
     end
