@@ -5,6 +5,12 @@ class tftp::params {
       $package = 'tftpd-hpa'
       $daemon  = true
       $service = 'tftpd-hpa'
+      if $::operatingsystem == 'Ubuntu' and versioncmp($::operatingsystemrelease, '16.04') >= 0 {
+        # 16.04's Puppet package defaults to upstart (https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/1570472)
+        $service_provider = 'systemd'
+      } else {
+        $service_provider = undef
+      }
       if $::operatingsystem == 'Ubuntu' {
         $root = '/var/lib/tftpboot'
       } else {
@@ -44,6 +50,7 @@ class tftp::params {
       $package = 'tftp-hpa'
       $daemon  = true
       $service = 'tftpd'
+      $service_provider = undef
       $root = '/tftpboot'
       $syslinux_package = 'syslinux'
     }
