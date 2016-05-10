@@ -94,6 +94,10 @@ describe 'tftp' do
             :subscribe => 'Class[Tftp::Config]',
           })
         end
+
+        if facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease] == '16.04'
+          it { should contain_service('tftpd-hpa').with_provider('systemd') }
+        end
       end
 
       context 'with root set to /changed' do
