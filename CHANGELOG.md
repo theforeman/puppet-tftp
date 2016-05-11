@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.0
+* Add support for Archlinux
+* Add package, syslinux_package parameters to override package names
+* Fix service resource provider under Ubuntu 16.04
+
 ## 1.7.0
 * Add support for Ubuntu 16.04
 * Support Puppet 3.0 minimum
