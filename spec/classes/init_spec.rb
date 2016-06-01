@@ -56,7 +56,7 @@ describe 'tftp' do
             with_content(%r{^# Convert backslashes to slashes}).
             with_mode('0644')
 
-          should contain_file('/var/lib/tftpboot/').with({
+          should contain_file('/var/lib/tftpboot').with({
             :ensure => 'directory',
             :notify => 'Class[Xinetd]',
           })
@@ -194,7 +194,7 @@ describe 'tftp' do
         with_content(%r{^# Convert backslashes to slashes}).
         with_mode('0644')
 
-      should contain_file('/var/lib/tftpboot/').with({
+      should contain_file('/var/lib/tftpboot').with({
         :ensure => 'directory',
         :notify => 'Class[Xinetd]',
       })
