@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.1
+* Mark compatibility with puppetlabs/xinetd 2.x
+
 ## 1.8.0
 * Add support for Archlinux
 * Add package, syslinux_package parameters to override package names
