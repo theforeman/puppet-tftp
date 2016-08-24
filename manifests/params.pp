@@ -58,6 +58,7 @@ class tftp::params {
       $package          = 'tftp-hpa'
       $daemon           = true
       $service          = 'tftpd.socket' #systemd starts the socket not the service
+      $service_provider = undef
       $syslinux_package = 'syslinux'
       $root             = '/srv/tftp'
     }
