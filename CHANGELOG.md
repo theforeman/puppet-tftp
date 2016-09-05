@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.2
+* Fix strict variables compatibility on Arch Linux
+
 ## 1.8.1
 * Mark compatibility with puppetlabs/xinetd 2.x
 
