@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.0
+* Drop support for Ruby 1.8.7
+
 ## 1.8.2
 * Fix strict variables compatibility on Arch Linux
 
