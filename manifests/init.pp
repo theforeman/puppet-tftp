@@ -25,12 +25,10 @@
 #    package => 'tftp-hpa-destruct',
 #  }
 class tftp (
-  $root             = $tftp::params::root,
-  $package          = $tftp::params::package,
-  $syslinux_package = $tftp::params::syslinux_package,
+  Stdlib::Absolutepath $root                        = $tftp::params::root,
+  String $package                                   = $tftp::params::package,
+  Variant[String, Array[String]] $syslinux_package  = $tftp::params::syslinux_package,
 ) inherits tftp::params {
-
-  validate_absolute_path($root)
 
   class {'::tftp::install':}
   -> class {'::tftp::config':}
