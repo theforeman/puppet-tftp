@@ -1,6 +1,6 @@
 {
   "name": "theforeman-tftp",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "author": "theforeman",
   "summary": "TFTP server configuration",
   "license": "GPL-3.0+",
@@ -16,7 +16,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 2.3.0 < 5.0.0"
+      "version_requirement": ">= 4.13.1 < 5.0.0"
     },
     {
       "name": "puppetlabs/xinetd",
@@ -26,7 +26,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.0.0 < 5.0.0"
+      "version_requirement": ">= 4.6.1 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
