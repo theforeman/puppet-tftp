@@ -2,14 +2,14 @@
 class tftp::service {
 
   # No service needed if not daemonized
-  case $tftp::params::daemon {
+  case $tftp::daemon {
     false: { }
     default: {
-      service { $tftp::params::service:
+      service { $tftp::service:
         ensure    => running,
         enable    => true,
         alias     => 'tftpd',
-        provider  => $::tftp::params::service_provider,
+        provider  => $::tftp::service_provider,
         subscribe => Class['tftp::config'],
       }
     }
