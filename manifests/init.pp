@@ -7,6 +7,9 @@
 # $root:: Configures the root directory for the TFTP server
 # $package:: name of the tftp package
 # $syslinux_package:: name of the syslinux package, essential for pxe boot
+# $daemon:: runs a TFTP service when true, configures xinetd when false
+# $service:: name of the TFTP service, when daemon is true
+# $service_provider:: override TFTP service provider, when daemon is true
 #
 # === Usage
 #
@@ -25,10 +28,13 @@
 #    package => 'tftp-hpa-destruct',
 #  }
 class tftp (
-  Stdlib::Absolutepath $root                        = $tftp::params::root,
-  String $package                                   = $tftp::params::package,
-  Variant[String, Array[String]] $syslinux_package  = $tftp::params::syslinux_package,
-) inherits tftp::params {
+  Stdlib::Absolutepath $root,
+  String $package,
+  Variant[String, Array[String]] $syslinux_package,
+  Boolean $daemon,
+  Optional[String] $service = undef,
+  Optional[String] $service_provider = undef,
+) {
 
   class {'::tftp::install':}
   -> class {'::tftp::config':}

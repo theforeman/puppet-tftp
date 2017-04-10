@@ -158,7 +158,8 @@ describe 'tftp' do
     let :facts do
       {
         :operatingsystem => 'Amazon',
-        :osfamily        => 'Linux',
+        :osfamily => 'Linux',
+        :os => { :name => 'Amazon', :family => 'Linux' }
       }
     end
 
@@ -202,29 +203,6 @@ describe 'tftp' do
 
     it 'should not contain the service' do
       should_not contain_service('tftpd-hpa')
-    end
-  end
-
-  context 'on unsupported Linux operatingsystem' do
-    let :facts do
-      {
-        :operatingsystem => 'unsupported',
-        :osfamily        => 'Linux',
-      }
-    end
-
-    it 'should fail' do
-      should raise_error(Puppet::Error, /: This module does not support operatingsystem #{facts[:operatingsystem]}/)
-    end
-  end
-
-  context 'on unsupported osfamily' do
-    let :facts do
-      {:osfamily => 'unsupported'}
-    end
-
-    it 'should fail' do
-      should raise_error(Puppet::Error, /: This module does not support osfamily #{facts[:osfamily]}/)
     end
   end
 end

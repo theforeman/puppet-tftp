@@ -1,0 +1,6 @@
+---
+tftp::daemon: true
+tftp::package: tftp-hpa
+tftp::root: "/srv/tftp"
+tftp::service: tftpd.socket
+tftp::syslinux_package: syslinux

@@ -1,7 +1,7 @@
 # Configure TFTP
 class tftp::config {
 
-  case $::tftp::params::daemon {
+  case $::tftp::daemon {
     default: {
       file { $::tftp::root:
         ensure => directory,
