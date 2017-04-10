@@ -25,7 +25,13 @@ class tftp::params {
     }
     'RedHat': {
       $package          = 'tftp-server'
-      $daemon           = false
+      if versioncmp($::operatingsystemrelease, '7') >= 0 {
+        $daemon           = true
+        $service          = 'tftp.socket'
+        $service_provider = 'systemd'
+      } else {
+        $daemon = false
+      }
       $syslinux_package = 'syslinux'
       if $::operatingsystemrelease =~ /^(4|5)/ {
         $root  = '/tftpboot'
