@@ -1,32 +1,29 @@
-# == Class: tftp
+# TFTP server class
 #
-# This class installs and configures a TFTP server
+# This class installs and configures a TFTP server, supporting both standalone
+# daemons and xinetd-based TFTP servers.
 #
-# === Parameters
+# @summary Installs and configures a TFTP server
 #
-# $root:: Configures the root directory for the TFTP server
-# $package:: name of the tftp package
-# $syslinux_package:: name of the syslinux package, essential for pxe boot
-# $daemon:: runs a TFTP service when true, configures xinetd when false
-# $service:: name of the TFTP service, when daemon is true
-# $service_provider:: override TFTP service provider, when daemon is true
+# @example Simple usage
+#   include tftp
 #
-# === Usage
+# @example Configure a TFTP server with a non-default root directory
+#   class { 'tftp':
+#     root => '/tftpboot',
+#   }
 #
-# * Simple usage:
+# @example Configure a TFTP server with non-default package name
+#   class { 'tftp:'
+#     package => 'tftp-hpa-destruct',
+#   }
 #
-#     include tftp
-#
-# * Configure a TFTP server with a non-default root directory:
-#
-#  class { 'tftp':
-#    root => '/tftpboot',
-#  }
-#
-# * Configure a TFTP server with non-default package name:
-#  class { 'tftp:'
-#    package => 'tftp-hpa-destruct',
-#  }
+# @param root Configures the root directory for the TFTP server
+# @param package Name of the TFTP server package
+# @param syslinux_package Name of the syslinux package, essential for pxe boot
+# @param daemon Runs a TFTP service when true, configures xinetd when false
+# @param service Name of the TFTP service, when daemon is true
+# @param service_provider Override TFTP service provider, when daemon is true
 class tftp (
   Stdlib::Absolutepath $root,
   String $package,
