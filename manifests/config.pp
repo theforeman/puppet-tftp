@@ -29,7 +29,7 @@ class tftp::config {
       }
 
       file {'/etc/tftpd.map':
-        source => 'puppet:///modules/tftp/tftpd.map',
+        source => "puppet:///modules/${module_name}/tftpd.map",
         mode   => '0644',
         notify => Class['xinetd'],
       }
