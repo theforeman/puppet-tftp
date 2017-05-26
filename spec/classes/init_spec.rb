@@ -53,7 +53,6 @@ describe 'tftp' do
           })
 
           should contain_file('/etc/tftpd.map').with({
-            :ensure => 'file',
             :source => 'puppet:///modules/tftp/tftpd.map',
             :mode   => '0644',
           })
