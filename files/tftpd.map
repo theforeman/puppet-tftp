@@ -2,3 +2,4 @@
 re ^bootmgr\.exe boot/bootmgr.exe
 re ^\\Boot\\ boot/
 rg \\ /
+rg (.*)ÿ$ \1

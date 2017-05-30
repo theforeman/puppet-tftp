@@ -52,9 +52,10 @@ describe 'tftp' do
             :per_source  => '11',
           })
 
-          should contain_file('/etc/tftpd.map').
-            with_content(%r{^# Convert backslashes to slashes}).
-            with_mode('0644')
+          should contain_file('/etc/tftpd.map').with({
+            :source => 'puppet:///modules/tftp/tftpd.map',
+            :mode   => '0644',
+          })
 
           should contain_file('/var/lib/tftpboot').with({
             :ensure => 'directory',
@@ -191,9 +192,10 @@ describe 'tftp' do
         :per_source  => '11',
       })
 
-      should contain_file('/etc/tftpd.map').
-        with_content(%r{^# Convert backslashes to slashes}).
-        with_mode('0644')
+      should contain_file('/etc/tftpd.map').with({
+        :source => 'puppet:///modules/tftp/tftpd.map',
+        :mode   => '0644',
+      })
 
       should contain_file('/var/lib/tftpboot').with({
         :ensure => 'directory',
