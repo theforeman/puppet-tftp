@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0
+* Drop Puppet 3 support
+* Add handling for some buggy PXE stacks 
+
 ## 2.0.0
 * Drop support for Ruby 1.8.7
 
