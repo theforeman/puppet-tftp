@@ -16,7 +16,7 @@ RSpec.configure do |c|
     # Install module and dependencies
     puppet_module_install(:source => proj_root, :module_name => 'tftp')
     hosts.each do |host|
-      ["puppetlabs-stdlib"].each do |mod|
+      ["puppetlabs-stdlib", "puppetlabs-xinetd"].each do |mod|
         on host, puppet('module', 'install', mod), { :acceptable_exit_codes => [0] }
       end
 

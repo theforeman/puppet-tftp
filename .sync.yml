@@ -1,4 +1,13 @@
 ---
+.travis.yml:
+  beaker_sets:
+    - docker/centos-6
+    - docker/centos-7
+    - docker/debian-8
 Rakefile:
   param_docs_pattern:
     - manifests/init.pp
+spec/spec_helper_acceptance.rb:
+  modules:
+    - puppetlabs-stdlib
+    - puppetlabs-xinetd
