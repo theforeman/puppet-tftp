@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.2
+* Allow puppetlabs/xinetd 3.0.0
+* Set the service for the Red Hat OS family
+
+## 3.0.1
+* Fix `invalid byte sequence in UTF-8` error
+
 ## 3.0.0
 * Drop Puppet 3 support
 * Add handling for some buggy PXE stacks 
