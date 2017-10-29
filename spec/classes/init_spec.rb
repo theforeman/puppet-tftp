@@ -28,8 +28,8 @@ describe 'tftp' do
           :alias  => 'tftp-server',
         })
 
-        if (facts[:operatingsystem] == 'Debian' && facts[:operatingsystemrelease].start_with?('8.')) ||
-           (facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease].start_with?('16.'))
+        if facts[:operatingsystem] == 'Debian' ||
+           (facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease].to_i >= 16)
           should contain_package('pxelinux').with_ensure('installed')
           should contain_package('syslinux-common').with_ensure('installed')
         else
