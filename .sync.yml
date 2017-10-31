@@ -4,6 +4,7 @@
     - docker/centos-6
     - docker/centos-7
     - docker/debian-8
+    - docker/debian-9
 Rakefile:
   param_docs_pattern:
     - manifests/init.pp
