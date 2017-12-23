@@ -3,8 +3,8 @@ class tftp::config {
 
   case $::tftp::daemon {
     default: {
-      file { $::tftp::root:
-        ensure => directory,
+      if $tftp::manage_root_dir {
+        ensure_resource('file', $::tftp::root, {'ensure' => 'directory'})
       }
 
       if $::osfamily =~ /^(FreeBSD|DragonFly)$/ {
