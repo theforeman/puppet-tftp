@@ -1,0 +1,2 @@
+---
+tftp::manage_root_dir: true
