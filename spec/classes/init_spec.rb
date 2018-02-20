@@ -57,10 +57,9 @@ describe 'tftp' do
             :mode   => '0644',
           })
 
-          should contain_file('/var/lib/tftpboot').with({
-            :ensure => 'directory',
-            :notify => 'Class[Xinetd]',
-          })
+          should contain_file('/var/lib/tftpboot')
+            .with_ensure('directory')
+            .that_notifies('Class[Xinetd]')
         end
 
         it 'should not contain the service' do
@@ -197,10 +196,9 @@ describe 'tftp' do
         :mode   => '0644',
       })
 
-      should contain_file('/var/lib/tftpboot').with({
-        :ensure => 'directory',
-        :notify => 'Class[Xinetd]',
-      })
+      should contain_file('/var/lib/tftpboot')
+        .with_ensure('directory')
+        .that_notifies('Class[Xinetd]')
     end
 
     it 'should not contain the service' do

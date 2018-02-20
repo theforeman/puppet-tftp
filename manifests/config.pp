@@ -1,11 +1,11 @@
 # Configure TFTP
 class tftp::config {
 
-  if $::tftp::daemon {
-    if $tftp::manage_root_dir {
-      ensure_resource('file', $::tftp::root, {'ensure' => 'directory'})
-    }
+  if $::tftp::manage_root_dir {
+    ensure_resource('file', $::tftp::root, {'ensure' => 'directory'})
+  }
 
+  if $::tftp::daemon {
     if $::osfamily =~ /^(FreeBSD|DragonFly)$/ {
       augeas { 'set root directory':
         context => '/files/etc/rc.conf',
@@ -33,9 +33,8 @@ class tftp::config {
       notify    => Class['xinetd'],
     }
 
-    file { $::tftp::root:
-      ensure => directory,
-      notify => Class['xinetd'],
+    if $::tftp::manage_root_dir {
+      File[$::tftp::root] ~> Class['xinetd']
     }
   }
 }
