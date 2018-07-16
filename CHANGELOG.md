@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.0](https://github.com/theforeman/puppet-tftp/tree/4.2.0) (2018-07-16)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.1.0...4.2.0)
+
+**Implemented enhancements:**
+
+- Support Ubuntu/bionic, drop Fedora 25 [\#72](https://github.com/theforeman/puppet-tftp/pull/72) ([mmoll](https://github.com/mmoll))
+
 ## [4.1.0](https://github.com/theforeman/puppet-tftp/tree/4.1.0) (2018-05-02)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.0.0...4.1.0)
@@ -9,6 +17,7 @@
 - Clean up the configuration class [\#70](https://github.com/theforeman/puppet-tftp/pull/70) ([ekohl](https://github.com/ekohl))
 
 ## [4.0.0](https://github.com/theforeman/puppet-tftp/tree/4.0.0) (2018-01-25)
+
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/3.0.2...4.0.0)
 
 **Breaking changes:**
