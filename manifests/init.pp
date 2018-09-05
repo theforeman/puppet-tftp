@@ -34,8 +34,10 @@ class tftp (
   Optional[String] $service = undef,
   Optional[String] $service_provider = undef,
 ) {
-  class {'tftp::install':}
-  -> class {'tftp::config':}
-  ~> class {'tftp::service':}
-  -> Class['tftp']
+  contain tftp::install
+  contain tftp::config
+  contain tftp::service
+
+  Class['tftp::install'] -> Class['tftp::config']
+  Class['tftp::install', 'tftp::config'] ~> Class['tftp::service']
 }
