@@ -72,12 +72,11 @@ describe 'tftp' do
         end
 
         it 'should contain the service' do
-          should contain_service('tftpd').with({
-            :ensure    => 'running',
-            :enable    => true,
-            :alias     => 'tftpd',
-            :subscribe => 'Class[Tftp::Config]',
-          })
+          should contain_service('tftpd')
+            .with_ensure('running')
+            .with_enable('true')
+            .with_alias('tftpd')
+            .that_subscribes_to('Class[Tftp::Config]')
         end
       elsif facts[:osfamily] == 'Archlinux'
         it 'should not configure xinetd' do
@@ -86,12 +85,11 @@ describe 'tftp' do
         end
 
         it 'should contain the service' do
-          should contain_service('tftpd.socket').with({
-            :ensure    => 'running',
-            :enable    => true,
-            :alias     => 'tftpd',
-            :subscribe => 'Class[Tftp::Config]',
-          })
+          should contain_service('tftpd.socket')
+            .with_ensure('running')
+            .with_enable('true')
+            .with_alias('tftpd')
+            .that_subscribes_to('Class[Tftp::Config]')
         end
 
       else
@@ -101,12 +99,11 @@ describe 'tftp' do
         end
 
         it 'should contain the service' do
-          should contain_service('tftpd-hpa').with({
-            :ensure    => 'running',
-            :enable    => true,
-            :alias     => 'tftpd',
-            :subscribe => 'Class[Tftp::Config]',
-          })
+          should contain_service('tftpd-hpa')
+            .with_ensure('running')
+            .with_enable('true')
+            .with_alias('tftpd')
+            .that_subscribes_to('Class[Tftp::Config]')
         end
 
         if facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease] == '16.04'
