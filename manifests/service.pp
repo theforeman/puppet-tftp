@@ -9,7 +9,7 @@ class tftp::service {
         ensure    => running,
         enable    => true,
         alias     => 'tftpd',
-        provider  => $::tftp::service_provider,
+        provider  => $tftp::service_provider,
         subscribe => Class['tftp::config'],
       }
     }

@@ -11,9 +11,9 @@ describe 'tftp with default parameters' do
 
   let(:pp) do
     <<-EOS
-    class { '::tftp': }
+    class { 'tftp': }
 
-    file { "${::tftp::root}/test":
+    file { "${tftp::root}/test":
       ensure  => file,
       content => 'do the happy dance',
     }

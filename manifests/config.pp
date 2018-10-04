@@ -1,24 +1,23 @@
 # Configure TFTP
 class tftp::config {
-
-  if $::tftp::manage_root_dir {
-    ensure_resource('file', $::tftp::root, {'ensure' => 'directory'})
+  if $tftp::manage_root_dir {
+    ensure_resource('file', $tftp::root, {'ensure' => 'directory'})
   }
 
-  if $::tftp::daemon {
-    if $::osfamily =~ /^(FreeBSD|DragonFly)$/ {
+  if $tftp::daemon {
+    if $facts['osfamily'] =~ /^(FreeBSD|DragonFly)$/ {
       augeas { 'set root directory':
         context => '/files/etc/rc.conf',
-        changes => "set tftpd_flags '\"-s ${::tftp::root}\"'",
+        changes => "set tftpd_flags '\"-s ${tftp::root}\"'",
       }
     }
   } else {
-    include ::xinetd
+    include xinetd
 
     xinetd::service { 'tftp':
       port        => '69',
       server      => '/usr/sbin/in.tftpd',
-      server_args => "-v -s ${::tftp::root} -m /etc/tftpd.map",
+      server_args => "-v -s ${tftp::root} -m /etc/tftpd.map",
       socket_type => 'dgram',
       protocol    => 'udp',
       cps         => '100 2',
@@ -33,8 +32,8 @@ class tftp::config {
       notify    => Class['xinetd'],
     }
 
-    if $::tftp::manage_root_dir {
-      File[$::tftp::root] ~> Class['xinetd']
+    if $tftp::manage_root_dir {
+      File[$tftp::root] ~> Class['xinetd']
     }
   }
 }
