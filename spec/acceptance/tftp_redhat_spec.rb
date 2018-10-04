@@ -13,11 +13,11 @@ describe 'tftp with explicit daemon', :if => fact('osfamily') == 'RedHat' && fac
 
   let(:pp) do
     <<-EOS
-    class { '::tftp':
+    class { 'tftp':
       daemon => true,
     }
 
-    file { "${::tftp::root}/test":
+    file { "${tftp::root}/test":
       ensure  => file,
       content => 'clap your hands',
     }
