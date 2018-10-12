@@ -23,6 +23,7 @@
 # @param syslinux_package Name of the syslinux package, essential for pxe boot
 # @param daemon Runs a TFTP service when true, configures xinetd when false
 # @param manage_root_dir manages the root dir, which tftpd will serve, defaults to true
+# @param map_source The source URL of the mapping file
 # @param service Name of the TFTP service, when daemon is true
 # @param service_provider Override TFTP service provider, when daemon is true
 class tftp (
@@ -31,6 +32,7 @@ class tftp (
   Variant[String, Array[String]] $syslinux_package,
   Boolean $daemon,
   Boolean $manage_root_dir,
+  String $map_source,
   Optional[String] $service = undef,
   Optional[String] $service_provider = undef,
 ) {

@@ -26,7 +26,7 @@ class tftp::config {
     }
 
     file {'/etc/tftpd.map':
-      source    => "puppet:///modules/${module_name}/tftpd.map",
+      source    => $tftp::map_source,
       mode      => '0644',
       show_diff => false, # Puppet explodes with 'Error: invalid byte sequence in UTF-8' when trying to display the diff
       notify    => Class['xinetd'],
