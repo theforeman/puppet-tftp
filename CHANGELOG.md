@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.3.0](https://github.com/theforeman/puppet-tftp/tree/4.3.0) (2018-10-15)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.2.1...4.3.0)
+
+**Implemented enhancements:**
+
+- Fixes [\#25190](https://projects.theforeman.org/issues/25190) - Allow overriding the tftp map source [\#82](https://github.com/theforeman/puppet-tftp/pull/82) ([ekohl](https://github.com/ekohl))
+- Simplify service class & contain classes [\#80](https://github.com/theforeman/puppet-tftp/pull/80) ([ekohl](https://github.com/ekohl))
+
 ## [4.2.1](https://github.com/theforeman/puppet-tftp/tree/4.2.1) (2018-10-04)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.2.0...4.2.1)
