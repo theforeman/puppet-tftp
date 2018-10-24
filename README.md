@@ -1,8 +1,11 @@
+[![Puppet Forge](https://img.shields.io/puppetforge/v/theforeman/tftp.svg)](https://forge.puppetlabs.com/theforeman/tftp)
+[![Build Status](https://travis-ci.org/theforeman/puppet-tftp.svg?branch=master)](https://travis-ci.org/theforeman/puppet-tftp)
+
 # Puppet module for managing a TFTP server
 
 Installs and configures a TFTP server.
 
-Part of the Foreman installer: http://github.com/theforeman/foreman-installer
+Part of the Foreman installer: https://github.com/theforeman/foreman-installer
 
 # Contributing
 
@@ -12,7 +15,7 @@ Part of the Foreman installer: http://github.com/theforeman/foreman-installer
 
 # More info
 
-See http://theforeman.org or at #theforeman irc channel on freenode
+See https://theforeman.org or at #theforeman irc channel on freenode
 
 Copyright (c) 2010-2013 Ohad Levy and their respective owners
 
@@ -27,4 +30,4 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
