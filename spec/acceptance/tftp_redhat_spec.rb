@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'tftp with explicit daemon', :if => fact('osfamily') == 'RedHat' && fact('operatingsystemmajrelease') == '7' do
+describe 'tftp with explicit daemon', if: fact('osfamily') == 'RedHat' && fact('operatingsystemmajrelease') == '7' do
   before(:all) do
     on hosts, puppet('resource', 'service', 'xinetd', 'ensure=stopped', 'enable=false')
     on hosts, puppet('resource', 'service', 'tftp.socket', 'ensure=stopped', 'enable=false')
@@ -37,7 +37,7 @@ describe 'tftp with explicit daemon', :if => fact('osfamily') == 'RedHat' && fac
   end
 
   # This doesn't work on Travis - actual tftp testing is more reliable anyway
-  describe port(69), :unless => ENV['TRAVIS'] do
+  describe port(69), unless: ENV['TRAVIS'] do
     it { is_expected.to be_listening.with('udp') }
   end
 
