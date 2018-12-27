@@ -1,4 +1,5 @@
 # TFTP service
+# @api private
 class tftp::service {
 
   # No service needed if not daemonized
