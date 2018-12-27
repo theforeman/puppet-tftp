@@ -1,4 +1,5 @@
 # Configure TFTP
+# @api private
 class tftp::config {
   if $tftp::manage_root_dir {
     ensure_resource('file', $tftp::root, {'ensure' => 'directory'})

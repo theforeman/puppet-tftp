@@ -1,4 +1,5 @@
 # Install TFTP
+# @api private
 class tftp::install {
   package { $tftp::package:
     ensure => installed,
