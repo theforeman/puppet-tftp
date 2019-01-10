@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.4.0](https://github.com/theforeman/puppet-tftp/tree/4.4.0) (2019-01-10)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.3.0...4.4.0)
+
+**Implemented enhancements:**
+
+- Support Puppet 6 [\#86](https://github.com/theforeman/puppet-tftp/pull/86) ([ekohl](https://github.com/ekohl))
+
+**Merged pull requests:**
+
+- Mark private classes for puppet-strings [\#88](https://github.com/theforeman/puppet-tftp/pull/88) ([ekohl](https://github.com/ekohl))
+
 ## [4.3.0](https://github.com/theforeman/puppet-tftp/tree/4.3.0) (2018-10-15)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.2.1...4.3.0)

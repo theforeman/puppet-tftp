@@ -1,6 +1,6 @@
 {
   "name": "theforeman-tftp",
-  "version": "4.3.1",
+  "version": "4.4.0",
   "author": "theforeman",
   "summary": "TFTP server configuration",
   "license": "GPL-3.0+",
