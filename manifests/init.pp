@@ -35,6 +35,10 @@ class tftp (
   String $map_source,
   Optional[String] $service = undef,
   Optional[String] $service_provider = undef,
+  String $username = 'tftp',
+  String $address = '',
+  Integer $port = 69,
+  String $options = '--secure',
 ) {
   contain tftp::install
   contain tftp::config
