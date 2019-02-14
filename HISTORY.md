@@ -1,6 +1,3 @@
-## 4.5.0
-* Add daemon config file for osfamily Debian
-
 ## 3.0.2
 * Allow puppetlabs/xinetd 3.0.0
 * Set the service for the Red Hat OS family

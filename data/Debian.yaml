@@ -6,3 +6,4 @@ tftp::service: tftpd-hpa
 tftp::syslinux_package:
 - syslinux-common
 - pxelinux
+tftp::options: '--secure'

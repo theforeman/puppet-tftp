@@ -19,7 +19,6 @@ class tftp::config {
         group   => 'root',
         mode    => '0644',
         content => template('tftp/tftpd-hpa.erb'),
-        notify  => Service[$tftp::service],
       }
     }
   } else {
