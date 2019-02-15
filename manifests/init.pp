@@ -28,7 +28,7 @@
 # @param service_provider Override TFTP service provider, when daemon is true
 # @param username Configures the daemon user
 # @param port Configures the Listen Port
-# @param address Configures the Listen Address, if empty it will listen on IPv4 and IPv6
+# @param address Configures the Listen Address, if empty it will listen on IPv4 and IPv6 (only on tftpd-hpa)
 # @param options Configures daemon options
 class tftp (
   Stdlib::Absolutepath $root,
@@ -39,7 +39,7 @@ class tftp (
   String $map_source,
   Optional[String] $service = undef,
   Optional[String] $service_provider = undef,
-  String $username = 'tftp',
+  String $username = 'root',
   Stdlib::Port $port = 69,
   Optional[String] $address = undef,
   Optional[String] $options = undef,
