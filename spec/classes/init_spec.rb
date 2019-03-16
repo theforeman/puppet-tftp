@@ -27,8 +27,7 @@ describe 'tftp' do
           .with_ensure('installed')
           .with_alias('tftp-server')
 
-        if facts[:operatingsystem] == 'Debian' ||
-           (facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease].to_i >= 16)
+        if facts[:operatingsystem] == 'Debian' || facts[:operatingsystem] == 'Ubuntu'
           should contain_package('pxelinux').with_ensure('installed')
           should contain_package('syslinux-common').with_ensure('installed')
         else
