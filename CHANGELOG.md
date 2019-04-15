@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.0.0](https://github.com/theforeman/puppet-tftp/tree/5.0.0) (2019-04-15)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.4.0...5.0.0)
+
+**Breaking changes:**
+
+- drop Puppet 4 [\#93](https://github.com/theforeman/puppet-tftp/pull/93) ([mmoll](https://github.com/mmoll))
+- drop EOL OSes [\#92](https://github.com/theforeman/puppet-tftp/pull/92) ([mmoll](https://github.com/mmoll))
+
 ## [4.4.0](https://github.com/theforeman/puppet-tftp/tree/4.4.0) (2019-01-10)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.3.0...4.4.0)
