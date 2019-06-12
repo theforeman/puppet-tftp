@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/theforeman/puppet-tftp/tree/5.0.1) (2019-06-12)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/5.0.0...5.0.1)
+
+**Merged pull requests:**
+
+- Allow `puppetlabs/stdlib` 6.x [\#95](https://github.com/theforeman/puppet-tftp/pull/95) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [5.0.0](https://github.com/theforeman/puppet-tftp/tree/5.0.0) (2019-04-15)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/4.4.0...5.0.0)
