@@ -24,7 +24,7 @@ describe 'tftp with default parameters' do
 
   service_name = case fact('osfamily')
                  when 'RedHat'
-                   'xinetd'
+                   fact('operatingsystemmajrelease').to_i >= 8 ? 'tftp.socket' : 'xinetd'
                  when 'Debian'
                    'tftpd-hpa'
                  end
@@ -34,7 +34,12 @@ describe 'tftp with default parameters' do
     it { is_expected.to be_running }
   end
 
-  describe port(69) do
+  describe service('xinetd'), if: service_name != 'xinetd' do
+    it { is_expected.not_to be_enabled }
+    it { is_expected.not_to be_running }
+  end
+
+  describe port(69), unless: service_name == 'tftp.socket' do
     it { is_expected.to be_listening.with('udp') }
   end
 

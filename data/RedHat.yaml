@@ -1,5 +1,5 @@
 ---
-tftp::daemon: false
+tftp::daemon: true
 tftp::service: tftp.socket
 tftp::package: tftp-server
 tftp::root: "/var/lib/tftpboot"

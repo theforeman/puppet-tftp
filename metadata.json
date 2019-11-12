@@ -34,14 +34,16 @@
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
@@ -54,7 +56,8 @@
     {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
-        "26"
+        "30",
+        "31"
       ]
     },
     {
