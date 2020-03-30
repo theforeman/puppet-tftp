@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'tftp with explicit daemon', if: fact('osfamily') == 'RedHat' && fact('operatingsystemmajrelease') == '7' do
+describe 'tftp with explicit daemon', if: fact('os.family') == 'RedHat' && fact('os.release.major') == '7' do
   before(:all) do
     on hosts, puppet('resource', 'service', 'xinetd', 'ensure=stopped', 'enable=false')
     on hosts, puppet('resource', 'service', 'tftp.socket', 'ensure=stopped', 'enable=false')

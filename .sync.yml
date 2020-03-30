@@ -3,6 +3,7 @@
   beaker_sets:
     - centos6-64
     - centos7-64
+    - centos8-64
     - debian8-64
     - debian9-64
     - debian10-64
