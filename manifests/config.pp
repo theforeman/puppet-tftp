@@ -6,7 +6,7 @@ class tftp::config {
   }
 
   if $tftp::daemon {
-    if $facts['osfamily'] =~ /^(FreeBSD|DragonFly)$/ {
+    if $facts['os']['family'] =~ /^(FreeBSD|DragonFly)$/ {
       augeas { 'set root directory':
         context => '/files/etc/rc.conf',
         changes => "set tftpd_flags '\"-s ${tftp::root}\"'",
