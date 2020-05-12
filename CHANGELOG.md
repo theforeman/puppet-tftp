@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.0.0](https://github.com/theforeman/puppet-tftp/tree/6.0.0) (2020-05-12)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/5.0.2...6.0.0)
+
+**Breaking changes:**
+
+- Use modern facts [\#107](https://github.com/theforeman/puppet-tftp/issues/107)
+
+**Implemented enhancements:**
+
+- Add EL8 & Fedora 31, drop Fedora 26 [\#98](https://github.com/theforeman/puppet-tftp/pull/98) ([ekohl](https://github.com/ekohl))
+
 ## [5.0.2](https://github.com/theforeman/puppet-tftp/tree/5.0.2) (2020-02-11)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/5.0.1...5.0.2)
