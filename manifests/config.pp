@@ -12,6 +12,26 @@ class tftp::config {
         changes => "set tftpd_flags '\"-s ${tftp::root}\"'",
       }
     }
+    if $facts['os']['family'] =~ /^(RedHat)$/ {
+      if versioncmp($facts['os']['release']['major'], '8') == 0 {
+        systemd::unit_file { 'tftp.service':
+          content => "
+[Unit]
+Description=Tftp Server
+Requires=tftp.socket
+Documentation=man:in.tftpd
+
+[Service]
+ExecStart=/usr/sbin/in.tftpd -s ${tftp::root}
+StandardInput=socket
+
+[Install]
+Also=tftp.socket
+",
+        }
+      }
+    }
+
   } else {
     include xinetd
 
