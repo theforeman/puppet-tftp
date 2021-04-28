@@ -42,7 +42,8 @@ describe 'tftp' do
             should contain_class('xinetd')
 
             should contain_xinetd__service('tftp')
-              .with_port('69')
+              .with_user('root')
+              .with_port(69)
               .with_server('/usr/sbin/in.tftpd')
               .with_server_args('-v -s /var/lib/tftpboot -m /etc/tftpd.map')
               .with_socket_type('dgram')
@@ -75,6 +76,11 @@ describe 'tftp' do
               .with_enable('true')
               .with_alias('tftpd')
               .that_subscribes_to('Class[Tftp::Config]')
+          end
+
+          it 'should contain the service override' do
+            should contain_systemd__dropin_file('root-directory')
+              .with_content(%r{^ExecStart=/usr/sbin/in\.tftp -s /var/lib/tftpboot$})
           end
         end
       when 'FreeBSD'
