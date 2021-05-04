@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.1.0](https://github.com/theforeman/puppet-tftp/tree/6.1.0) (2021-05-04)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/6.0.0...6.1.0)
+
+**Implemented enhancements:**
+
+- Support Ubuntu 20.04 [\#114](https://github.com/theforeman/puppet-tftp/pull/114) ([ekohl](https://github.com/ekohl))
+- Support Puppet 7 [\#111](https://github.com/theforeman/puppet-tftp/pull/111) ([ekohl](https://github.com/ekohl))
+
 ## [6.0.0](https://github.com/theforeman/puppet-tftp/tree/6.0.0) (2020-05-12)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/5.0.2...6.0.0)
