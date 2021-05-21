@@ -11,20 +11,20 @@ describe 'tftp with explicit daemon', if: fact('osfamily') == 'RedHat' && fact('
     on hosts, puppet('resource', 'service', 'tftp.socket', 'ensure=stopped', 'enable=false')
   end
 
-  let(:pp) do
-    <<-EOS
-    class { 'tftp':
-      daemon => true,
-    }
+  it_behaves_like 'an idempotent resource' do
+    let(:manifest) do
+      <<-EOS
+      class { 'tftp':
+        daemon => true,
+      }
 
-    file { "${tftp::root}/test":
-      ensure  => file,
-      content => 'clap your hands',
-    }
-    EOS
+      file { "${tftp::root}/test":
+        ensure  => file,
+        content => 'clap your hands',
+      }
+      EOS
+    end
   end
-
-  it_behaves_like 'a idempotent resource'
 
   describe service('xinetd') do
     it { is_expected.not_to be_enabled }

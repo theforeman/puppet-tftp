@@ -9,18 +9,18 @@ describe 'tftp with default parameters' do
     on hosts, puppet('resource', 'service', 'xinetd', 'ensure=stopped', 'enable=false')
   end
 
-  let(:pp) do
-    <<-EOS
-    class { 'tftp': }
+  it_behaves_like 'an idempotent resource' do
+    let(:manifest) do
+      <<-PUPPET
+      class { 'tftp': }
 
-    file { "${tftp::root}/test":
-      ensure  => file,
-      content => 'do the happy dance',
-    }
-    EOS
+      file { "${tftp::root}/test":
+        ensure  => file,
+        content => 'do the happy dance',
+      }
+      PUPPET
+    end
   end
-
-  it_behaves_like 'a idempotent resource'
 
   service_name = case fact('osfamily')
                  when 'RedHat'
