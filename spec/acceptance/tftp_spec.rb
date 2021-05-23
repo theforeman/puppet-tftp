@@ -43,10 +43,6 @@ describe 'tftp with default parameters' do
     it { is_expected.to be_listening.with('udp') }
   end
 
-  describe 'ensure tftp client is installed' do
-    on hosts, puppet('resource', 'package', 'tftp', 'ensure=installed')
-  end
-
   describe command("echo get /test /tmp/downloaded_file | tftp #{fact('fqdn')}") do
     its(:exit_status) { should eq 0 }
   end
