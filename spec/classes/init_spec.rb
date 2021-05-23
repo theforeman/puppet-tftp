@@ -5,15 +5,15 @@ describe 'tftp' do
     context "on #{os}" do
       let(:facts) { facts }
 
-      it { should compile.with_all_deps }
+      it { is_expected.to compile.with_all_deps }
 
-      it 'should include classes' do
-        should contain_class('tftp::install')
-        should contain_class('tftp::config')
-        should contain_class('tftp::service')
+      it 'includes classes' do
+        is_expected.to contain_class('tftp::install')
+        is_expected.to contain_class('tftp::config')
+        is_expected.to contain_class('tftp::service')
       end
 
-      it 'should install default package' do
+      it 'installs default package' do
         tftp_package = case facts[:osfamily]
                        when 'RedHat'
                          'tftp-server'
@@ -23,25 +23,25 @@ describe 'tftp' do
                          'tftp-hpa'
                        end
 
-        should contain_package(tftp_package)
+        is_expected.to contain_package(tftp_package)
           .with_ensure('installed')
           .with_alias('tftp-server')
 
         if facts[:operatingsystem] == 'Debian' || facts[:operatingsystem] == 'Ubuntu'
-          should contain_package('pxelinux').with_ensure('installed')
-          should contain_package('syslinux-common').with_ensure('installed')
+          is_expected.to contain_package('pxelinux').with_ensure('installed')
+          is_expected.to contain_package('syslinux-common').with_ensure('installed')
         else
-          should contain_package('syslinux').with_ensure('installed')
+          is_expected.to contain_package('syslinux').with_ensure('installed')
         end
       end
 
       case facts[:osfamily]
       when 'RedHat'
         if facts[:operatingsystemmajrelease].to_i <= 7
-          it 'should configure xinetd' do
-            should contain_class('xinetd')
+          it 'configures xinetd' do
+            is_expected.to contain_class('xinetd')
 
-            should contain_xinetd__service('tftp')
+            is_expected.to contain_xinetd__service('tftp')
               .with_port('69')
               .with_server('/usr/sbin/in.tftpd')
               .with_server_args('-v -s /var/lib/tftpboot -m /etc/tftpd.map')
@@ -51,21 +51,21 @@ describe 'tftp' do
               .with_flags('IPv4')
               .with_per_source('11')
 
-            should contain_file('/etc/tftpd.map')
+            is_expected.to contain_file('/etc/tftpd.map')
               .with_source('puppet:///modules/tftp/tftpd.map')
               .with_mode('0644')
 
-            should contain_file('/var/lib/tftpboot')
+            is_expected.to contain_file('/var/lib/tftpboot')
               .with_ensure('directory')
               .that_notifies('Class[Xinetd]')
           end
 
-          it 'should not contain the service' do
-            should_not contain_service('tftpd-hpa')
+          it 'does not contain the service' do
+            is_expected.not_to contain_service('tftpd-hpa')
           end
         else
-          it 'should contain the service' do
-            should contain_service('tftp.socket')
+          it 'contains the service' do
+            is_expected.to contain_service('tftp.socket')
               .with_ensure('running')
               .with_enable('true')
               .with_alias('tftpd')
@@ -73,24 +73,24 @@ describe 'tftp' do
           end
         end
       when 'FreeBSD'
-        it 'should contain the service' do
-          should contain_service('tftpd')
+        it 'contains the service' do
+          is_expected.to contain_service('tftpd')
             .with_ensure('running')
             .with_enable('true')
             .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
       when 'Archlinux'
-        it 'should contain the service' do
-          should contain_service('tftpd.socket')
+        it 'contains the service' do
+          is_expected.to contain_service('tftpd.socket')
             .with_ensure('running')
             .with_enable('true')
             .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
       else
-        it 'should contain the service' do
-          should contain_service('tftpd-hpa')
+        it 'contains the service' do
+          is_expected.to contain_service('tftpd-hpa')
             .with_ensure('running')
             .with_enable('true')
             .with_alias('tftpd')
@@ -98,13 +98,13 @@ describe 'tftp' do
         end
 
         if facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease] == '16.04'
-          it { should contain_service('tftpd-hpa').with_provider('systemd') }
+          it { is_expected.to contain_service('tftpd-hpa').with_provider('systemd') }
         end
       end
 
-      it 'should not configure xinetd', unless: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
-        should_not contain_class('xinetd')
-        should_not contain_xinetd__service('tftp')
+      it 'does not configure xinetd', unless: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
+        is_expected.not_to contain_class('xinetd')
+        is_expected.not_to contain_xinetd__service('tftp')
       end
 
       context 'with root set to /changed', if: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
@@ -114,8 +114,8 @@ describe 'tftp' do
           }
         end
 
-        it 'should set root to non-default value in xinetd config' do
-          should contain_xinetd__service('tftp')
+        it 'sets root to non-default value in xinetd config' do
+          is_expected.to contain_xinetd__service('tftp')
             .with_server_args('-v -s /changed -m /etc/tftpd.map')
         end
       end
@@ -127,8 +127,8 @@ describe 'tftp' do
           }
         end
 
-        it 'should install custom tftp package' do
-          should contain_package('tftp-hpa-destruct')
+        it 'installs custom tftp package' do
+          is_expected.to contain_package('tftp-hpa-destruct')
             .with_ensure('installed')
             .with_alias('tftp-server')
         end
@@ -140,8 +140,9 @@ describe 'tftp' do
             syslinux_package: 'my-own-syslinux'
           }
         end
-        it 'should install custom syslinux package' do
-          should contain_package('my-own-syslinux').with_ensure('installed')
+
+        it 'installs custom syslinux package' do
+          is_expected.to contain_package('my-own-syslinux').with_ensure('installed')
         end
       end
     end
@@ -156,23 +157,23 @@ describe 'tftp' do
       }
     end
 
-    it 'should include classes' do
-      should contain_class('tftp::install')
-      should contain_class('tftp::config')
-      should contain_class('tftp::service')
+    it 'includes classes' do
+      is_expected.to contain_class('tftp::install')
+      is_expected.to contain_class('tftp::config')
+      is_expected.to contain_class('tftp::service')
     end
 
-    it 'should install packages' do
-      should contain_package('tftp-server')
+    it 'installs packages' do
+      is_expected.to contain_package('tftp-server')
         .with_ensure('installed')
         .with_alias('tftp-server')
-      should contain_package('syslinux').with_ensure('installed')
+      is_expected.to contain_package('syslinux').with_ensure('installed')
     end
 
-    it 'should configure xinetd' do
-      should contain_class('xinetd')
+    it 'configures xinetd' do
+      is_expected.to contain_class('xinetd')
 
-      should contain_xinetd__service('tftp')
+      is_expected.to contain_xinetd__service('tftp')
         .with_port('69')
         .with_server('/usr/sbin/in.tftpd')
         .with_server_args('-v -s /var/lib/tftpboot -m /etc/tftpd.map')
@@ -182,17 +183,17 @@ describe 'tftp' do
         .with_flags('IPv4')
         .with_per_source('11')
 
-      should contain_file('/etc/tftpd.map')
+      is_expected.to contain_file('/etc/tftpd.map')
         .with_source('puppet:///modules/tftp/tftpd.map')
         .with_mode('0644')
 
-      should contain_file('/var/lib/tftpboot')
+      is_expected.to contain_file('/var/lib/tftpboot')
         .with_ensure('directory')
         .that_notifies('Class[Xinetd]')
     end
 
-    it 'should not contain the service' do
-      should_not contain_service('tftpd-hpa')
+    it 'does not contain the service' do
+      is_expected.not_to contain_service('tftpd-hpa')
     end
   end
 end

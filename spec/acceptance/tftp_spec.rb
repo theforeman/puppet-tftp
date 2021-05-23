@@ -44,11 +44,11 @@ describe 'tftp with default parameters' do
   end
 
   describe command("echo get /test /tmp/downloaded_file | tftp #{fact('fqdn')}") do
-    its(:exit_status) { should eq 0 }
+    its(:exit_status) { is_expected.to eq 0 }
   end
 
   describe file('/tmp/downloaded_file') do
-    it { should be_file }
-    its(:content) { should eq 'do the happy dance' }
+    it { is_expected.to be_file }
+    its(:content) { is_expected.to eq 'do the happy dance' }
   end
 end

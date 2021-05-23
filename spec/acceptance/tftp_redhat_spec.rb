@@ -42,11 +42,11 @@ describe 'tftp with explicit daemon', if: fact('osfamily') == 'RedHat' && fact('
   end
 
   describe command("echo get /test /tmp/downloaded_file | tftp #{fact('fqdn')}") do
-    its(:exit_status) { should eq 0 }
+    its(:exit_status) { is_expected.to eq 0 }
   end
 
   describe file('/tmp/downloaded_file') do
-    it { should be_file }
-    its(:content) { should eq 'clap your hands' }
+    it { is_expected.to be_file }
+    its(:content) { is_expected.to eq 'clap your hands' }
   end
 end
