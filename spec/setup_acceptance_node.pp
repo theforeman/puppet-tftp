@@ -1,0 +1,3 @@
+package { 'tftp':
+  ensure => installed,
+}
