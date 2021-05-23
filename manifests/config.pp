@@ -2,7 +2,7 @@
 # @api private
 class tftp::config {
   if $tftp::manage_root_dir {
-    ensure_resource('file', $tftp::root, {'ensure' => 'directory'})
+    ensure_resource('file', $tftp::root, { 'ensure' => 'directory' })
   }
 
   if $tftp::daemon {
@@ -26,7 +26,7 @@ class tftp::config {
       per_source  => '11',
     }
 
-    file {'/etc/tftpd.map':
+    file { '/etc/tftpd.map':
       source    => $tftp::map_source,
       mode      => '0644',
       show_diff => false, # Puppet explodes with 'Error: invalid byte sequence in UTF-8' when trying to display the diff
