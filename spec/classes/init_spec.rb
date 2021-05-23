@@ -64,11 +64,6 @@ describe 'tftp' do
             should_not contain_service('tftpd-hpa')
           end
         else
-          it 'should not configure xinetd' do
-            should_not contain_class('xinetd')
-            should_not contain_xinetd__service('tftp')
-          end
-
           it 'should contain the service' do
             should contain_service('tftp.socket')
               .with_ensure('running')
@@ -78,11 +73,6 @@ describe 'tftp' do
           end
         end
       when 'FreeBSD'
-        it 'should not configure xinetd' do
-          should_not contain_class('xinetd')
-          should_not contain_xinetd__service('tftp')
-        end
-
         it 'should contain the service' do
           should contain_service('tftpd')
             .with_ensure('running')
@@ -91,11 +81,6 @@ describe 'tftp' do
             .that_subscribes_to('Class[Tftp::Config]')
         end
       when 'Archlinux'
-        it 'should not configure xinetd' do
-          should_not contain_class('xinetd')
-          should_not contain_xinetd__service('tftp')
-        end
-
         it 'should contain the service' do
           should contain_service('tftpd.socket')
             .with_ensure('running')
@@ -103,13 +88,7 @@ describe 'tftp' do
             .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
-
       else
-        it 'should not configure xinetd' do
-          should_not contain_class('xinetd')
-          should_not contain_xinetd__service('tftp')
-        end
-
         it 'should contain the service' do
           should contain_service('tftpd-hpa')
             .with_ensure('running')
@@ -121,6 +100,11 @@ describe 'tftp' do
         if facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease] == '16.04'
           it { should contain_service('tftpd-hpa').with_provider('systemd') }
         end
+      end
+
+      it 'should not configure xinetd', unless: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
+        should_not contain_class('xinetd')
+        should_not contain_xinetd__service('tftp')
       end
 
       context 'with root set to /changed', if: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
