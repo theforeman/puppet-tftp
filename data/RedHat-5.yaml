@@ -1,3 +1,0 @@
----
-tftp::root: "/tftpboot"
-tftp::daemon: false
