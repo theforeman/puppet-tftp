@@ -1,4 +1,0 @@
----
-# 16.04's Puppet package defaults to upstart (https://bugs.launchpad.net/ubuntu/+source/puppet/+bug/1570472)
-tftp::service_provider: systemd
-tftp::root: "/var/lib/tftpboot"
