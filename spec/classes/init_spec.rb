@@ -42,6 +42,7 @@ describe 'tftp' do
             should contain_class('xinetd')
 
             should contain_xinetd__service('tftp')
+              .with_user('root')
               .with_port('69')
               .with_server('/usr/sbin/in.tftpd')
               .with_server_args('-v -s /var/lib/tftpboot -m /etc/tftpd.map')
