@@ -12,6 +12,15 @@ class tftp::config {
         changes => "set tftpd_flags '\"-s ${tftp::root}\"'",
       }
     }
+    if $facts['osfamily'] == 'Debian' {
+      file { '/etc/default/tftpd-hpa':
+        ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
+        content => template('tftp/tftpd-hpa.erb'),
+      }
+    }
   } else {
     include xinetd
 
