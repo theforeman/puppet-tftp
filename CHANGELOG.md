@@ -1,5 +1,20 @@
 # Changelog
 
+## [7.0.0](https://github.com/theforeman/puppet-tftp/tree/7.0.0) (2021-07-23)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/6.0.0...7.0.0)
+
+**Breaking changes:**
+
+- Drop EL6, Debian 8, Ubuntu 16.04 [\#122](https://github.com/theforeman/puppet-tftp/pull/122) ([ehelms](https://github.com/ehelms))
+- Drop Puppet 5 support [\#120](https://github.com/theforeman/puppet-tftp/pull/120) ([ehelms](https://github.com/ehelms))
+
+**Implemented enhancements:**
+
+- Allow Puppet 7 compatible versions of mods [\#116](https://github.com/theforeman/puppet-tftp/pull/116) ([ekohl](https://github.com/ekohl))
+- Support Ubuntu 20.04 [\#114](https://github.com/theforeman/puppet-tftp/pull/114) ([ekohl](https://github.com/ekohl))
+- Support Puppet 7 [\#111](https://github.com/theforeman/puppet-tftp/pull/111) ([ekohl](https://github.com/ekohl))
+
 ## [6.0.0](https://github.com/theforeman/puppet-tftp/tree/6.0.0) (2020-05-12)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/5.0.2...6.0.0)
