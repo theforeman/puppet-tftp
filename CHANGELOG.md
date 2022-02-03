@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.0](https://github.com/theforeman/puppet-tftp/tree/7.1.0) (2022-02-03)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/7.0.0...7.1.0)
+
+**Implemented enhancements:**
+
+- puppetlabs/stdlib: Allow 8.x [\#129](https://github.com/theforeman/puppet-tftp/pull/129) ([bastelfreak](https://github.com/bastelfreak))
+- Add Debian 11 support [\#125](https://github.com/theforeman/puppet-tftp/pull/125) ([ekohl](https://github.com/ekohl))
+
 ## [7.0.0](https://github.com/theforeman/puppet-tftp/tree/7.0.0) (2021-07-23)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/6.0.0...7.0.0)
