@@ -1,5 +1,5 @@
 fixtures:
   repositories:
     augeas_core: 'https://github.com/puppetlabs/puppetlabs-augeas_core'
-    stdlib: 'git://github.com/puppetlabs/puppetlabs-stdlib'
-    xinetd: 'git://github.com/puppetlabs/puppetlabs-xinetd'
+    stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib'
+    xinetd: 'https://github.com/puppetlabs/puppetlabs-xinetd'
