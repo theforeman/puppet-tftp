@@ -4,7 +4,7 @@
   "author": "theforeman",
   "summary": "TFTP server configuration",
   "license": "GPL-3.0+",
-  "source": "git://github.com/theforeman/puppet-tftp",
+  "source": "https://github.com/theforeman/puppet-tftp",
   "project_page": "https://github.com/theforeman/puppet-tftp",
   "issues_url": "https://github.com/theforeman/puppet-tftp/issues",
   "description": "Module for configuring a TFTP server",
