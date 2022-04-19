@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.2.0](https://github.com/theforeman/puppet-tftp/tree/7.2.0) (2022-04-19)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/7.1.0...7.2.0)
+
+**Implemented enhancements:**
+
+- CentOS Stream 9 support [\#126](https://github.com/theforeman/puppet-tftp/pull/126) ([ekohl](https://github.com/ekohl))
+
 ## [7.1.0](https://github.com/theforeman/puppet-tftp/tree/7.1.0) (2022-02-03)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/7.0.0...7.1.0)
