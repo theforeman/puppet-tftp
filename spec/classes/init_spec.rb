@@ -96,10 +96,6 @@ describe 'tftp' do
             .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
-
-        if facts[:operatingsystem] == 'Ubuntu' && facts[:operatingsystemrelease] == '16.04'
-          it { should contain_service('tftpd-hpa').with_provider('systemd') }
-        end
       end
 
       it 'should not configure xinetd', unless: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
