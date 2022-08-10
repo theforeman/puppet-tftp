@@ -1,5 +1,4 @@
 ---
-tftp::daemon: true
 tftp::package: tftpd-hpa
 tftp::root: "/srv/tftp"
 tftp::service: tftpd-hpa

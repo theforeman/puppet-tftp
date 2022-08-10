@@ -1,3 +1,2 @@
 ---
 tftp::manage_root_dir: true
-tftp::map_source: puppet:///modules/tftp/tftpd.map

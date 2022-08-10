@@ -37,40 +37,12 @@ describe 'tftp' do
 
       case facts[:osfamily]
       when 'RedHat'
-        if facts[:operatingsystemmajrelease].to_i <= 7
-          it 'should configure xinetd' do
-            should contain_class('xinetd')
-
-            should contain_xinetd__service('tftp')
-              .with_port('69')
-              .with_server('/usr/sbin/in.tftpd')
-              .with_server_args('-v -s /var/lib/tftpboot -m /etc/tftpd.map')
-              .with_socket_type('dgram')
-              .with_protocol('udp')
-              .with_cps('100 2')
-              .with_flags('IPv4')
-              .with_per_source('11')
-
-            should contain_file('/etc/tftpd.map')
-              .with_source('puppet:///modules/tftp/tftpd.map')
-              .with_mode('0644')
-
-            should contain_file('/var/lib/tftpboot')
-              .with_ensure('directory')
-              .that_notifies('Class[Xinetd]')
-          end
-
-          it 'should not contain the service' do
-            should_not contain_service('tftpd-hpa')
-          end
-        else
-          it 'should contain the service' do
-            should contain_service('tftp.socket')
-              .with_ensure('running')
-              .with_enable('true')
-              .with_alias('tftpd')
-              .that_subscribes_to('Class[Tftp::Config]')
-          end
+        it 'should contain the service' do
+          should contain_service('tftp.socket')
+            .with_ensure('running')
+            .with_enable('true')
+            .with_alias('tftpd')
+            .that_subscribes_to('Class[Tftp::Config]')
         end
       when 'FreeBSD'
         it 'should contain the service' do
@@ -95,24 +67,6 @@ describe 'tftp' do
             .with_enable('true')
             .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
-        end
-      end
-
-      it 'should not configure xinetd', unless: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
-        should_not contain_class('xinetd')
-        should_not contain_xinetd__service('tftp')
-      end
-
-      context 'with root set to /changed', if: facts[:osfamily] == 'RedHat' && facts[:operatingsystemmajrelease].to_i <= 7 do
-        let :params do
-          {
-            root: '/changed'
-          }
-        end
-
-        it 'should set root to non-default value in xinetd config' do
-          should contain_xinetd__service('tftp')
-            .with_server_args('-v -s /changed -m /etc/tftpd.map')
         end
       end
 
@@ -165,30 +119,12 @@ describe 'tftp' do
       should contain_package('syslinux').with_ensure('installed')
     end
 
-    it 'should configure xinetd' do
-      should contain_class('xinetd')
-
-      should contain_xinetd__service('tftp')
-        .with_port('69')
-        .with_server('/usr/sbin/in.tftpd')
-        .with_server_args('-v -s /var/lib/tftpboot -m /etc/tftpd.map')
-        .with_socket_type('dgram')
-        .with_protocol('udp')
-        .with_cps('100 2')
-        .with_flags('IPv4')
-        .with_per_source('11')
-
-      should contain_file('/etc/tftpd.map')
-        .with_source('puppet:///modules/tftp/tftpd.map')
-        .with_mode('0644')
-
-      should contain_file('/var/lib/tftpboot')
-        .with_ensure('directory')
-        .that_notifies('Class[Xinetd]')
-    end
-
-    it 'should not contain the service' do
-      should_not contain_service('tftpd-hpa')
+    it 'should contain the service' do
+      should contain_service('tftp.socket')
+        .with_ensure('running')
+        .with_enable('true')
+        .with_alias('tftpd')
+        .that_subscribes_to('Class[Tftp::Config]')
     end
   end
 end

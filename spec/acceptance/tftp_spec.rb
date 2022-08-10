@@ -1,14 +1,6 @@
 require 'spec_helper_acceptance'
 
 describe 'tftp with default parameters' do
-  before(:all) do
-    on hosts, puppet('resource', 'service', 'xinetd', 'ensure=stopped', 'enable=false')
-  end
-
-  after(:all) do
-    on hosts, puppet('resource', 'service', 'xinetd', 'ensure=stopped', 'enable=false')
-  end
-
   it_behaves_like 'an idempotent resource' do
     let(:manifest) do
       <<-PUPPET
@@ -26,7 +18,7 @@ describe 'tftp with default parameters' do
                  when 'Archlinux'
                    'tftpd.socket'
                  when 'RedHat'
-                   fact('operatingsystemmajrelease').to_i >= 8 ? 'tftp.socket' : 'xinetd'
+                   'tftp.socket'
                  when 'Debian'
                    'tftpd-hpa'
                  end
@@ -34,11 +26,6 @@ describe 'tftp with default parameters' do
   describe service(service_name) do
     it { is_expected.to be_enabled }
     it { is_expected.to be_running }
-  end
-
-  describe service('xinetd'), if: service_name != 'xinetd' do
-    it { is_expected.not_to be_enabled }
-    it { is_expected.not_to be_running }
   end
 
   describe port(69), unless: service_name.end_with?('.socket') do
