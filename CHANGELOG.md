@@ -1,6 +1,18 @@
 # Changelog
 
-## [7.2.0](https://github.com/theforeman/puppet-tftp/tree/7.2.0) (2022-04-19)
+## [8.0.0](https://github.com/theforeman/puppet-tftp/tree/8.0.0) (2022-10-27)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/7.2.0...8.0.0)
+
+**Breaking changes:**
+
+- Drop xinetd support [\#136](https://github.com/theforeman/puppet-tftp/pull/136) ([ekohl](https://github.com/ekohl))
+
+**Implemented enhancements:**
+
+- Update to voxpupuli-test 5 [\#135](https://github.com/theforeman/puppet-tftp/pull/135) ([ekohl](https://github.com/ekohl))
+
+## [7.2.0](https://github.com/theforeman/puppet-tftp/tree/7.2.0) (2022-04-20)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/7.1.0...7.2.0)
 
