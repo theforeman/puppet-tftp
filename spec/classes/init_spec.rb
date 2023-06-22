@@ -4,6 +4,14 @@ describe 'tftp' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) { facts }
+      let(:syslinux_package) do
+        case facts[:osfamily]
+        when 'Debian'
+          %w[syslinux-common pxelinux]
+        else
+          %w[syslinux]
+        end
+      end
 
       it { should compile.with_all_deps }
 
@@ -27,11 +35,8 @@ describe 'tftp' do
           .with_ensure('installed')
           .with_alias('tftp-server')
 
-        if facts[:operatingsystem] == 'Debian' || facts[:operatingsystem] == 'Ubuntu'
-          should contain_package('pxelinux').with_ensure('installed')
-          should contain_package('syslinux-common').with_ensure('installed')
-        else
-          should contain_package('syslinux').with_ensure('installed')
+        syslinux_package.each do |p|
+          should contain_package(p).with_ensure('installed')
         end
       end
 
@@ -92,6 +97,19 @@ describe 'tftp' do
         end
         it 'should install custom syslinux package' do
           should contain_package('my-own-syslinux').with_ensure('installed')
+        end
+      end
+
+      context 'with syslinux package management set to false' do
+        let :params do
+          {
+            manage_syslinux_package: false
+          }
+        end
+        it 'should not install a syslinux package' do
+          syslinux_package.each do |p|
+            should_not contain_package(p)
+          end
         end
       end
     end
