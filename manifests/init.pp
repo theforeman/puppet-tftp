@@ -16,6 +16,7 @@
 # @param root Configures the root directory for the TFTP server
 # @param package Name of the TFTP server package
 # @param syslinux_package Name of the syslinux package, essential for pxe boot
+# @param manage_syslinux_package manages the syslinux package, defaults to true
 # @param manage_root_dir manages the root dir, which tftpd will serve, defaults to true
 # @param service Name of the TFTP service, when daemon is true
 # @param service_provider Override TFTP service provider, when daemon is true
@@ -23,6 +24,7 @@ class tftp (
   Stdlib::Absolutepath $root,
   String $package,
   Variant[String, Array[String]] $syslinux_package,
+  Boolean $manage_syslinux_package,
   Boolean $manage_root_dir,
   Optional[String] $service = undef,
   Optional[String] $service_provider = undef,
