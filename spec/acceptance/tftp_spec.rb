@@ -16,7 +16,7 @@ describe 'tftp with default parameters' do
 
   service_name = case fact('osfamily')
                  when 'Archlinux'
-                   'tftpd.socket'
+                   'tftpd.service'
                  when 'RedHat'
                    'tftp.socket'
                  when 'Debian'
@@ -28,8 +28,8 @@ describe 'tftp with default parameters' do
     it { is_expected.to be_running }
   end
 
-  describe port(69), unless: service_name.end_with?('.socket') do
-    it { is_expected.to be_listening.with('udp') }
+  describe port(69) do
+    it { is_expected.to be_listening.with('udp').or be_listening.with('udp6') }
   end
 
   describe command("echo get /test /tmp/downloaded_file | tftp #{fact('fqdn')}") do

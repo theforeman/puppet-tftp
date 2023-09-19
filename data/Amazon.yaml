@@ -1,5 +1,5 @@
 ---
-tftp::package: tftp-server
-tftp::root: "/var/lib/tftpboot"
-tftp::service: tftp.socket
-tftp::syslinux_package: syslinux
+tftp::package: 'tftp-server'
+tftp::root: '/var/lib/tftpboot'
+tftp::service: 'tftp.socket'
+tftp::syslinux_package: 'syslinux'

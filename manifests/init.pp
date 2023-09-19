@@ -18,19 +18,20 @@
 # @param syslinux_package Name of the syslinux package, essential for pxe boot
 # @param manage_syslinux_package manages the syslinux package, defaults to true
 # @param manage_root_dir manages the root dir, which tftpd will serve, defaults to true
-# @param service Name of the TFTP service, when daemon is true
-# @param service_provider Override TFTP service provider, when daemon is true
-# @param username Configures the daemon user
+# @param service Name of the TFTP service
+# @param service_provider Override TFTP service provider
+# @param username Configures the service user
 # @param port Configures the Listen Port
 # @param address Configures the Listen Address, if empty it will listen on IPv4 and IPv6 (only on tftpd-hpa)
-# @param options Configures daemon options
+# @param options Configures service options
+
 class tftp (
   Stdlib::Absolutepath $root,
   String $package,
   Variant[String, Array[String]] $syslinux_package,
   Boolean $manage_syslinux_package,
   Boolean $manage_root_dir,
-  Optional[String] $service = undef,
+  Variant[String, Array[String]] $service,
   Optional[String] $service_provider = undef,
   String $username = 'root',
   Stdlib::Port $port = 69,
