@@ -1,5 +1,21 @@
 # Changelog
 
+## [9.0.0](https://github.com/theforeman/puppet-tftp/tree/9.0.0) (2023-11-14)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/8.0.0...9.0.0)
+
+**Breaking changes:**
+
+- Drop Fedora support [\#145](https://github.com/theforeman/puppet-tftp/pull/145) ([ekohl](https://github.com/ekohl))
+- Drop Puppet 6 support [\#144](https://github.com/theforeman/puppet-tftp/pull/144) ([ekohl](https://github.com/ekohl))
+- Drop Ubuntu 18.04 & Debian 9, add Red Hat 9 support [\#142](https://github.com/theforeman/puppet-tftp/pull/142) ([dvo-rak](https://github.com/dvo-rak))
+
+**Implemented enhancements:**
+
+- Add Puppet 8 support [\#140](https://github.com/theforeman/puppet-tftp/pull/140) ([bastelfreak](https://github.com/bastelfreak))
+- puppetlabs/stdlib: Allow 9.x [\#139](https://github.com/theforeman/puppet-tftp/pull/139) ([bastelfreak](https://github.com/bastelfreak))
+- make syslinux package management optional [\#138](https://github.com/theforeman/puppet-tftp/pull/138) ([UiP9AV6Y](https://github.com/UiP9AV6Y))
+
 ## [8.0.0](https://github.com/theforeman/puppet-tftp/tree/8.0.0) (2022-10-27)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/7.2.0...8.0.0)
