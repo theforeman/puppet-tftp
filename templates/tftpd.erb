@@ -1,0 +1,3 @@
+# /etc/conf.d/tftpd
+
+TFTPD_ARGS="<%= scope['tftp::options'] %> <%= scope['tftp::root'] %> --address <%= scope['tftp::address'] %>:<%= scope['tftp::port'] %> --user <%= scope['tftp::username'] %>"

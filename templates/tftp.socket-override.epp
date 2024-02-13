@@ -1,0 +1,3 @@
+[Socket]
+ListenDatagram=
+ListenDatagram=<%= $tftp::port %>
