@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.1.0](https://github.com/theforeman/puppet-tftp/tree/9.1.0) (2024-05-16)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/9.0.0...9.1.0)
+
+**Implemented enhancements:**
+
+- Add support for Debian 12 [\#149](https://github.com/theforeman/puppet-tftp/pull/149) ([evgeni](https://github.com/evgeni))
+- Add Ubuntu 22.04 support [\#148](https://github.com/theforeman/puppet-tftp/pull/148) ([evgeni](https://github.com/evgeni))
+
 ## [9.0.0](https://github.com/theforeman/puppet-tftp/tree/9.0.0) (2023-11-14)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/8.0.0...9.0.0)
