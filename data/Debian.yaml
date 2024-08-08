@@ -1,7 +1,9 @@
 ---
-tftp::package: tftpd-hpa
-tftp::root: "/srv/tftp"
-tftp::service: tftpd-hpa
+tftp::package: 'tftpd-hpa'
+tftp::root: '/srv/tftp'
+tftp::service: 'tftpd-hpa'
 tftp::syslinux_package:
-- syslinux-common
-- pxelinux
+- 'syslinux-common'
+- 'pxelinux'
+tftp::username: 'tftp'
+tftp::options: '--secure'

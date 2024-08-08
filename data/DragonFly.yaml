@@ -1,5 +1,5 @@
 ---
-tftp::package: tftp-hpa
-tftp::root: "/tftpboot"
-tftp::service: tftpd
-tftp::syslinux_package: syslinux
+tftp::package: 'tftp-hpa'
+tftp::root: '/tftpboot'
+tftp::service: 'tftpd'
+tftp::syslinux_package: 'syslinux'

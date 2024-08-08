@@ -46,23 +46,30 @@ describe 'tftp' do
           should contain_service('tftp.socket')
             .with_ensure('running')
             .with_enable('true')
-            .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
+        end
+
+        it 'should contain the service override' do
+          should contain_systemd__dropin_file('tftp-service-override.conf')
+            .with_content("[Service]\nExecStart=\nExecStart=/usr/sbin/in.tftpd --secure /var/lib/tftpboot\n")
+        end
+
+        it 'should contain the socket override' do
+          should contain_systemd__dropin_file('tftp-socket-override.conf')
+            .with_content("[Socket]\nListenDatagram=\nListenDatagram=69\n")
         end
       when 'FreeBSD'
         it 'should contain the service' do
           should contain_service('tftpd')
             .with_ensure('running')
             .with_enable('true')
-            .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
       when 'Archlinux'
         it 'should contain the service' do
-          should contain_service('tftpd.socket')
+          should contain_service('tftpd.service')
             .with_ensure('running')
             .with_enable('true')
-            .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
       else
@@ -70,7 +77,6 @@ describe 'tftp' do
           should contain_service('tftpd-hpa')
             .with_ensure('running')
             .with_enable('true')
-            .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
       end
@@ -141,7 +147,6 @@ describe 'tftp' do
       should contain_service('tftp.socket')
         .with_ensure('running')
         .with_enable('true')
-        .with_alias('tftpd')
         .that_subscribes_to('Class[Tftp::Config]')
     end
   end
