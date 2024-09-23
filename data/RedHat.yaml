@@ -3,3 +3,5 @@ tftp::service: tftp.socket
 tftp::package: tftp-server
 tftp::root: "/var/lib/tftpboot"
 tftp::syslinux_package: syslinux
+tftp::optional_packages:
+  - procps-ng

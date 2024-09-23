@@ -11,4 +11,10 @@ class tftp::install {
       ensure => installed,
     }
   }
+
+  if $tftp::optional_packages {
+    package { $tftp::optional_packages:
+      ensure => installed,
+    }
+  }
 }

@@ -49,6 +49,11 @@ describe 'tftp' do
             .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
         end
+
+        it 'should contain the procps-ng package' do
+          should contain_package('procps-ng')
+            .with_ensure('installed')
+        end
       when 'FreeBSD'
         it 'should contain the service' do
           should contain_service('tftpd')
