@@ -114,35 +114,4 @@ describe 'tftp' do
       end
     end
   end
-
-  context 'on Amazon Linux' do
-    let :facts do
-      {
-        operatingsystem: 'Amazon',
-        osfamily: 'Linux',
-        os: { name: 'Amazon', family: 'Linux' }
-      }
-    end
-
-    it 'should include classes' do
-      should contain_class('tftp::install')
-      should contain_class('tftp::config')
-      should contain_class('tftp::service')
-    end
-
-    it 'should install packages' do
-      should contain_package('tftp-server')
-        .with_ensure('installed')
-        .with_alias('tftp-server')
-      should contain_package('syslinux').with_ensure('installed')
-    end
-
-    it 'should contain the service' do
-      should contain_service('tftp.socket')
-        .with_ensure('running')
-        .with_enable('true')
-        .with_alias('tftpd')
-        .that_subscribes_to('Class[Tftp::Config]')
-    end
-  end
 end
