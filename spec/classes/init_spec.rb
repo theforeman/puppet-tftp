@@ -5,7 +5,7 @@ describe 'tftp' do
     context "on #{os}" do
       let(:facts) { facts }
       let(:syslinux_package) do
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'Debian'
           %w[syslinux-common pxelinux]
         else
@@ -22,7 +22,7 @@ describe 'tftp' do
       end
 
       it 'should install default package' do
-        tftp_package = case facts[:osfamily]
+        tftp_package = case facts[:os]['family']
                        when 'RedHat'
                          'tftp-server'
                        when 'Debian'
@@ -40,7 +40,7 @@ describe 'tftp' do
         end
       end
 
-      case facts[:osfamily]
+      case facts[:os]['family']
       when 'RedHat'
         it 'should contain the service' do
           should contain_service('tftp.socket')
