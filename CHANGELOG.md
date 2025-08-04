@@ -1,5 +1,19 @@
 # Changelog
 
+## [10.0.0](https://github.com/theforeman/puppet-tftp/tree/10.0.0) (2025-08-04)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/9.1.0...10.0.0)
+
+**Breaking changes:**
+
+- Drop CentOS 8 & Debian 10 support [\#158](https://github.com/theforeman/puppet-tftp/pull/158) ([ekohl](https://github.com/ekohl))
+- Drop EL7 support [\#157](https://github.com/theforeman/puppet-tftp/pull/157) ([ekohl](https://github.com/ekohl))
+- Drop Amazon Linux specifics [\#156](https://github.com/theforeman/puppet-tftp/pull/156) ([ekohl](https://github.com/ekohl))
+
+**Implemented enhancements:**
+
+- Add AlmaLinux 8 & 9 support [\#151](https://github.com/theforeman/puppet-tftp/pull/151) ([archanaserver](https://github.com/archanaserver))
+
 ## [9.1.0](https://github.com/theforeman/puppet-tftp/tree/9.1.0) (2024-05-16)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/9.0.0...9.1.0)
