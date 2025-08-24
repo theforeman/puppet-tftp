@@ -5,3 +5,5 @@ tftp::service: tftpd-hpa
 tftp::syslinux_package:
 - syslinux-common
 - pxelinux
+tftp::username: 'tftp'
+tftp::options: '--secure'
