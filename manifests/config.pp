@@ -22,9 +22,9 @@ class tftp::config {
       }
     }
     'RedHat': {
-      systemd::dropin_file { 'root-directory.conf':
+      systemd::dropin_file { 'tftp.conf':
         unit    => 'tftp.service',
-        content => epp('tftp/tftp.service-override.epp'),
+        content => epp("${module_name}/tftp.service-override.epp"),
       }
     }
     default: {}

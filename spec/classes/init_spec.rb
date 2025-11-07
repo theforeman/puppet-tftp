@@ -51,8 +51,8 @@ describe 'tftp' do
         end
 
         it 'should contain the service override' do
-          should contain_systemd__dropin_file('root-directory.conf')
-            .with_content(%r{^ExecStart=/usr/sbin/in\.tftp -s /var/lib/tftpboot$})
+          should contain_systemd__dropin_file('tftp.conf')
+            .with_content(%r{^ExecStart=/usr/sbin/in\.tftp --secure /var/lib/tftpboot$})
         end
       when 'FreeBSD'
         it 'should contain the service' do
@@ -77,6 +77,27 @@ describe 'tftp' do
             .with_enable('true')
             .with_alias('tftpd')
             .that_subscribes_to('Class[Tftp::Config]')
+        end
+      end
+
+      context 'with custom options' do
+        let :params do
+          {
+            options: '--secure --verbose'
+          }
+        end
+
+        case facts[:os]['family']
+        when 'Debian'
+          it 'should configure tftpd-hpa with custom options' do
+            should contain_file('/etc/default/tftpd-hpa')
+              .with_content(%r{^TFTP_OPTIONS="--secure --verbose"$})
+          end
+        when 'RedHat'
+          it 'should contain the service override with custom options' do
+            should contain_systemd__dropin_file('tftp.conf')
+              .with_content(%r{^ExecStart=/usr/sbin/in\.tftp --secure --verbose /var/lib/tftpboot$})
+          end
         end
       end
 
