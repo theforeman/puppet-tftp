@@ -18,7 +18,7 @@ class tftp::config {
         owner   => 'root',
         group   => 'root',
         mode    => '0644',
-        content => template('tftp/tftpd-hpa.erb'),
+        content => epp("${module_name}/tftpd-hpa.epp"),
       }
     }
     'RedHat': {
