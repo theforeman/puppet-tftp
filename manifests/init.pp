@@ -32,7 +32,7 @@ class tftp (
   Boolean $manage_root_dir,
   Optional[String] $service = undef,
   Optional[String] $service_provider = undef,
-  String $username = 'root',
+  String[1] $username = 'root',
   Stdlib::Port $port = 69,
   Optional[Stdlib::IP::Address] $address = undef,
   Optional[String] $options = undef,
