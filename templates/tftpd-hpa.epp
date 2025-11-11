@@ -1,4 +1,5 @@
 # /etc/default/tftpd-hpa
+# This file is managed by Puppet.
 
 TFTP_USERNAME="<%= $tftp::username %>"
 TFTP_DIRECTORY="<%= $tftp::root %>"
