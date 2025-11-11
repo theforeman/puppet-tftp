@@ -35,7 +35,7 @@ class tftp (
   String[1] $username = 'root',
   Stdlib::Port $port = 69,
   Optional[Stdlib::IP::Address] $address = undef,
-  Optional[String] $options = undef,
+  Optional[String[1]] $options = undef,
 ) {
   contain tftp::install
   contain tftp::config
