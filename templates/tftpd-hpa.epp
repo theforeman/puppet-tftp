@@ -1,0 +1,7 @@
+# /etc/default/tftpd-hpa
+# This file is managed by Puppet.
+
+TFTP_USERNAME="<%= $tftp::username %>"
+TFTP_DIRECTORY="<%= $tftp::root %>"
+TFTP_ADDRESS="<%= $tftp::address %>:<%= $tftp::port %>"
+TFTP_OPTIONS="<%= $tftp::options %>"
