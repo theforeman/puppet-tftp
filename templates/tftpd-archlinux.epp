@@ -1,0 +1,5 @@
+# /etc/conf.d/tftpd
+# This file is managed by Puppet.
+# Note: Port and Address bindings are managed via systemd socket override.
+
+TFTPD_ARGS="--user <%= $tftp::username %> --address <%= $tftp::address %>:<%= $tftp::port %> <%= $tftp::options %> <%= $tftp::root %>"

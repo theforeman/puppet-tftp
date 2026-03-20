@@ -41,6 +41,26 @@ describe 'tftp' do
       end
 
       case facts[:os]['family']
+      when 'Archlinux'
+        it 'should contain the configuration file' do
+          should contain_file('/etc/conf.d/tftpd')
+            .with_content(%r{^TFTPD_ARGS="--user root --address :69 --secure /srv/tftp"$})
+        end
+        it 'should contain the service' do
+          should contain_service('tftpd.service')
+            .with_ensure('running')
+            .with_enable('true')
+            .with_alias('tftpd')
+            .that_subscribes_to('Class[Tftp::Config]')
+        end
+      when 'FreeBSD'
+        it 'should contain the service' do
+          should contain_service('tftpd')
+            .with_ensure('running')
+            .with_enable('true')
+            .with_alias('tftpd')
+            .that_subscribes_to('Class[Tftp::Config]')
+        end
       when 'RedHat'
         it 'should contain the service' do
           should contain_service('tftp.socket')
@@ -51,24 +71,15 @@ describe 'tftp' do
         end
 
         it 'should contain the service override' do
-          should contain_systemd__dropin_file('tftp.conf')
-            .with_content(%r{^ExecStart=/usr/sbin/in\.tftp --secure /var/lib/tftpboot$})
+          should contain_systemd__dropin_file('tftp-service-override.conf')
+            .with_unit('tftp.service')
+            .with_content("[Service]\nExecStart=\nExecStart=/usr/sbin/in.tftpd --secure /var/lib/tftpboot\n")
         end
-      when 'FreeBSD'
-        it 'should contain the service' do
-          should contain_service('tftpd')
-            .with_ensure('running')
-            .with_enable('true')
-            .with_alias('tftpd')
-            .that_subscribes_to('Class[Tftp::Config]')
-        end
-      when 'Archlinux'
-        it 'should contain the service' do
-          should contain_service('tftpd.socket')
-            .with_ensure('running')
-            .with_enable('true')
-            .with_alias('tftpd')
-            .that_subscribes_to('Class[Tftp::Config]')
+
+        it 'should contain the socket override' do
+          should contain_systemd__dropin_file('tftp-socket-override.conf')
+            .with_unit('tftp.socket')
+            .with_content("[Socket]\nListenDatagram=\nListenDatagram=69\n")
         end
       else
         it 'should contain the service' do
@@ -83,21 +94,33 @@ describe 'tftp' do
       context 'with custom options' do
         let :params do
           {
-            options: '--secure --verbose'
+            options: '--secure --verbose',
+            address: '0.0.0.0'
           }
         end
 
         case facts[:os]['family']
+        when 'Archlinux'
+          it 'should contain the custom options' do
+            should contain_file('/etc/conf.d/tftpd')
+              .with_content(%r{^TFTPD_ARGS="--user root --address 0.0.0.0:69 --secure --verbose /srv/tftp"$})
+          end
         when 'Debian'
           it 'should configure tftpd-hpa with custom options' do
             should contain_file('/etc/default/tftpd-hpa')
-              .with_content(%r{^TFTP_OPTIONS="--secure --verbose"$})
+              .with_content(%r{^TFTP_ADDRESS="0.0.0.0:69"\nTFTP_OPTIONS="--secure --verbose"$})
           end
         when 'RedHat'
           it 'should contain the service override with custom options' do
-            should contain_systemd__dropin_file('tftp.conf')
-              .with_content(%r{^ExecStart=/usr/sbin/in\.tftp --secure --verbose /var/lib/tftpboot$})
+            should contain_systemd__dropin_file('tftp-service-override.conf')
+              .with_content(%r{^ExecStart=/usr/sbin/in\.tftpd --secure --verbose /var/lib/tftpboot$})
           end
+
+        it 'should contain the socket override' do
+          should contain_systemd__dropin_file('tftp-socket-override.conf')
+            .with_unit('tftp.socket')
+            .with_content("[Socket]\nListenDatagram=\nListenDatagram=0.0.0.0:69\n")
+        end
         end
       end
 

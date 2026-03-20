@@ -1,6 +1,6 @@
 require 'spec_helper_acceptance'
 
-describe 'tftp with default parameters' do
+describe 'tftp with custom port' do
   it_behaves_like 'an idempotent resource' do
     let(:manifest) do
       <<-EOS
@@ -16,9 +16,9 @@ describe 'tftp with default parameters' do
     end
   end
 
-  service_name = case fact('osfamily')
+  service_name = case fact('os.family')
                  when 'Archlinux'
-                   'tftpd.socket'
+                   'tftpd.service'
                  when 'RedHat'
                    'tftp.socket'
                  when 'Debian'
@@ -30,16 +30,25 @@ describe 'tftp with default parameters' do
     it { is_expected.to be_running }
   end
 
-  describe port(69), unless: service_name.end_with?('.socket') do
+  describe port(69)  do
     it { is_expected.not_to be_listening }
   end
 
-  describe port(1234), unless: service_name.end_with?('.socket') do
-    it { is_expected.to be_listening.with('udp') }
+  describe port(1234) do
+    it { is_expected.to be_listening.with('udp').or be_listening.with('udp6') }
   end
 
-  describe 'ensure tftp client is installed' do
-    on hosts, puppet('resource', 'package', 'tftp', 'ensure=installed')
+  package_name = case fact('os.family')
+                 when 'Debian'
+                   'tftpd-hpa'
+                 when 'RedHat'
+                   'tftp-server'
+                 else
+                   'tftp-hpa'
+                 end
+
+  describe package(package_name) do
+    it { is_expected.to be_installed }
   end
 
   describe command("echo get /test /tmp/downloaded_file | tftp #{fact('fqdn')} 1234") do

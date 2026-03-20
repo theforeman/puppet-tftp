@@ -1,0 +1,7 @@
+[Socket]
+ListenDatagram=
+<% if $tftp::address { -%>
+ListenDatagram=<%= $tftp::address %>:<%= $tftp::port %>
+<% } else { -%>
+ListenDatagram=<%= $tftp::port %>
+<% } -%>

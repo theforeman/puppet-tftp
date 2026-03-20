@@ -1,0 +1,3 @@
+# /etc/conf.d/tftpd
+
+TFTPD_ARGS="<%= $tftp::options %> <%= $tftp::root %> --address <%= $tftp::address %>:<%= $tftp::port %> --user <%= $tftp::username %>"
