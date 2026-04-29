@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.1.0](https://github.com/theforeman/puppet-tftp/tree/10.1.0) (2026-04-29)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/10.0.0...10.1.0)
+
+**Implemented enhancements:**
+
+- Switch Arch from socket to service [\#162](https://github.com/theforeman/puppet-tftp/pull/162) ([genebean](https://github.com/genebean))
+
 ## [10.0.0](https://github.com/theforeman/puppet-tftp/tree/10.0.0) (2025-08-04)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/9.1.0...10.0.0)
