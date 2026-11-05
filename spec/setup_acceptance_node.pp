@@ -1,6 +1,10 @@
 # Arch includes the client the server package
 unless $facts['os']['family'] == 'Archlinux' {
-  package { 'tftp':
+  $tftp_client_package = $facts['os']['family'] ? {
+    'Debian' => 'tftp-hpa',
+    default  => 'tftp',
+  }
+  package { $tftp_client_package:
     ensure => installed,
   }
 }
