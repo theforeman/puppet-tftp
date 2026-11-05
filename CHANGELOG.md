@@ -1,14 +1,27 @@
 # Changelog
 
-## [10.1.0](https://github.com/theforeman/puppet-tftp/tree/10.1.0) (2026-04-29)
+## [11.0.0](https://github.com/theforeman/puppet-tftp/tree/11.0.0) (2026-10-23)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/10.1.0...11.0.0)
+
+**Breaking changes:**
+
+- Switch from puppet to OpenVox 8 [\#166](https://github.com/theforeman/puppet-tftp/pull/166) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- puppetlabs/stdlib: Allow 10.x [\#167](https://github.com/theforeman/puppet-tftp/pull/167) ([bastelfreak](https://github.com/bastelfreak))
+- Add EL 10 support [\#164](https://github.com/theforeman/puppet-tftp/pull/164) ([ekohl](https://github.com/ekohl))
+
+## [10.1.0](https://github.com/theforeman/puppet-tftp/tree/10.1.0) (2026-04-30)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/10.0.0...10.1.0)
 
 **Implemented enhancements:**
 
-- Switch Arch from socket to service [\#162](https://github.com/theforeman/puppet-tftp/pull/162) ([genebean](https://github.com/genebean))
+- Switch Arch from socket to service, fixup other PR's stuff [\#162](https://github.com/theforeman/puppet-tftp/pull/162) ([genebean](https://github.com/genebean))
 
-## [10.0.0](https://github.com/theforeman/puppet-tftp/tree/10.0.0) (2025-08-04)
+## [10.0.0](https://github.com/theforeman/puppet-tftp/tree/10.0.0) (2025-08-08)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/9.1.0...10.0.0)
 
