@@ -1,5 +1,19 @@
 # Changelog
 
+## [11.0.0](https://github.com/theforeman/puppet-tftp/tree/11.0.0) (2026-11-09)
+
+[Full Changelog](https://github.com/theforeman/puppet-tftp/compare/10.1.0...11.0.0)
+
+**Breaking changes:**
+
+- Switch from puppet to OpenVox 8 [\#166](https://github.com/theforeman/puppet-tftp/pull/166) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add support for Debian 13 and Ubuntu 24.04 [\#169](https://github.com/theforeman/puppet-tftp/pull/169) ([evgeni](https://github.com/evgeni))
+- puppetlabs/stdlib: Allow 10.x [\#167](https://github.com/theforeman/puppet-tftp/pull/167) ([bastelfreak](https://github.com/bastelfreak))
+- Add EL 10 support [\#164](https://github.com/theforeman/puppet-tftp/pull/164) ([ekohl](https://github.com/ekohl))
+
 ## [10.1.0](https://github.com/theforeman/puppet-tftp/tree/10.1.0) (2026-04-29)
 
 [Full Changelog](https://github.com/theforeman/puppet-tftp/compare/10.0.0...10.1.0)
